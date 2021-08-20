@@ -8,8 +8,8 @@ const routes = [
 	},
 	{
 		path: "/",
-		name: "About",
-		component: () => import("../views/About.vue"),
+		name: "Landing",
+		component: () => import("../views/Landing.vue"),
 	},
 	{
 		path: "/menu",
@@ -29,8 +29,14 @@ const routes = [
 		component: () => import("../views/Gallery.vue"),
 	},
 	{
+		path: "/about",
+		name: "About",
+		component: () => import("../views/About.vue"),
+	},
+	{
 		path: "/contact",
 		name: "Contact",
+		component: () => import("../views/Contact.vue"),
 	},
 ];
 
@@ -40,12 +46,12 @@ const router = new VueRouter({
 		if (to.hash) {
 			return {
 				selector: to.hash,
-				behavior: "smooth"
-			}
+				behavior: "smooth",
+			};
 		} else if (savedPosition) {
-			return savedPosition
+			return savedPosition;
 		}
-		return { x: 0, y: 0 }
+		return { x: 0, y: 0 };
 	},
 	routes: routes,
 });
