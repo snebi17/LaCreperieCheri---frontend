@@ -1,5 +1,5 @@
 <template>
-	<v-container secondary fluid id="menu" class="py-16">
+	<v-container fluid secondary>
 		<v-container>
 			<v-row justify="center" align="center">
 				<v-col class="text-center align-items-center" color="success" cols="12">
