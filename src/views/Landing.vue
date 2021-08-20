@@ -2,7 +2,7 @@
     <v-container fluid fill-height class="v-container__custom">
         <v-row align="center">                
             <v-col class="text-center">
-                <p class="text-h5 text-md-h2 font-weight-bold secondary--text">La Crêperie Chéri<sup>®</sup></p>
+                <p class="text-h5 text-md-h3 font-weight-bold secondary--text">La Crêperie Chéri</p>
             </v-col>
         </v-row>
     </v-container>
