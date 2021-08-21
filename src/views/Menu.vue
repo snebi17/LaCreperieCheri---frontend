@@ -1,5 +1,5 @@
 <template>
-	<v-container fluid secondary>
+	<!-- <v-container fluid secondary>
 		<v-container>
 			<v-row justify="center" align="center">
 				<v-col class="text-center align-items-center" color="success" cols="12">
@@ -182,62 +182,84 @@
 				</v-container>
 			</v-container>
 		</v-overlay>
+	</v-container> -->
+	<v-container secondary fluid fill-height>
+		<v-row justify="center">
+			<v-col>
+				<v-tabs>
+					<v-tab @click="toggle">Sladko</v-tab>
+					<v-tab @click="toggle">Slano</v-tab>
+					<v-tab @click="toggle">Pijače</v-tab>
+				</v-tabs>
+			</v-col>
+			<v-col
+				v-for="tip in menu"
+				:key="tip.id"
+			>
+				<v-expansion-panels
+					v-for="items in zvrst"
+					:key="items.id"
+				>
+					<v-expansion-panel
+						v-for="items in group"
+						:key="items.id"
+					>
+						<v-expansion-panel-header>
+							{{ items[0] }}
+						</v-expansion-panel-header>
+						<v-expansion-panel-content
+							v-for="hehe in items"
+							:key="hehe.id"
+						>
+							<!-- <p>{{ item.name }}<span>{{ item.price }}</span></p> -->
+							<!-- <v-list>
+								<v-list-item-group>
+									<v-list-item>
+										
+									</v-list-item>
+								</v-list-item-group>
+							</v-list> -->
+						</v-expansion-panel-content>
+					</v-expansion-panel>
+				</v-expansion-panels>
+			</v-col>
+		</v-row>
+		<v-row>
+
+		</v-row>
 	</v-container>
 </template>
 
 <script>
 import axios from "axios";
 
-import MakeYourOwn from './MakeYourOwn.vue';
+// import MakeYourOwn from './MakeYourOwn.vue';
 
 export default {
 	name: "Menu",
 	components: {
-		MakeYourOwn
+		// MakeYourOwn
 	},
 	data() {
 		return {
 			menu: [],
-			sweet: [],
-			salty: [],
-			other: [],
 			errors: null,
 			overlay: false,
+			toggled: false
 		};
-	},
-	computed: {
-		// rows() {
-		// 	var rows = [];
-		// 	var arr = this.items;
-
-		// 	for (let i = 0; i < arr.length; i += 4) {
-		// 		var row = [];
-		// 		for (let j = 0; j < 4; j++) {
-		// 			row.push(arr[i + j]);
-		// 		}
-		// 		rows.push(row);
-		// 	}
-		// 	return rows;
-		// },
 	},
 	methods: {
 		getItems() {
-			axios
-				.get("http://localhost:4000/menu")
+			axios.get("http://localhost:4000/menu")
 				.then(items => {
-					this.sweet = items.data[0].sladko;
-					this.salty = items.data[0].slano;
-					this.other = items.data[0].pijača;
+					this.menu = items.data;
+					console.log(this.menu);
 				})
 				.catch(errors => this.errors = errors);
 		},
-		toggle(e) {
-			switch (e.target.innerText.toLowerCase()) {
-				case 'sladko': this.menu = this.sweet; break;
-				case 'slano': this.menu = this.salty; break;
-				case 'pijače': this.menu = this.other; break;
-				default: break;
-			}
+		toggle() {
+			this.toggled = !this.toggled;
+			console.log(this.menu);
 		}
 	},
 	created() {
@@ -246,23 +268,6 @@ export default {
 };
 </script>
 
-<style>
-	.border {
-		border: 3px solid black;
-	}
-	.overflow {
-		overflow: auto;
-	}
-	.card-size {
-		height: 100%;
-	}
-	.full-size {
-		width: 100vw;
-		height: 100vh;
-	}
-	.top-right {
-		position: absolute;
-		top: 25px;
-		right: 25px;
-	}
+<style scoped>
+
 </style>
