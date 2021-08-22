@@ -16,7 +16,7 @@ export default {
 
 <style scoped>
     .v-container__custom {
-        background: url('../assets/background.jpg')!important;
+        background: url('../assets/laPistacchio2.jpg')!important;
         background-size: cover!important;
     }
 </style>

@@ -183,8 +183,8 @@
 			</v-container>
 		</v-overlay>
 	</v-container> -->
-	<v-container secondary fluid fill-height>
-		<v-row justify="center">
+	<v-container success fluid class="pt-16">
+		<v-row>
 			<v-col>
 				<v-tabs>
 					<v-tab @click="toggle">Sladko</v-tab>
@@ -192,33 +192,30 @@
 					<v-tab @click="toggle">Pijače</v-tab>
 				</v-tabs>
 			</v-col>
-			<v-col
-				v-for="tip in menu"
-				:key="tip.id"
-			>
+		</v-row>
+		<v-row justify="center">
+			<v-col>
 				<v-expansion-panels
-					v-for="items in zvrst"
-					:key="items.id"
+					v-for="group in menu"
+					:key="group.id"
 				>
 					<v-expansion-panel
-						v-for="items in group"
-						:key="items.id"
+						v-for="(name, items) in group"
+						:key="name.id"
 					>
 						<v-expansion-panel-header>
-							{{ items[0] }}
+							{{ name }}
 						</v-expansion-panel-header>
 						<v-expansion-panel-content
-							v-for="hehe in items"
-							:key="hehe.id"
+							v-for="item in items"
+							:key="item.id"
 						>
-							<!-- <p>{{ item.name }}<span>{{ item.price }}</span></p> -->
-							<!-- <v-list>
+							<v-list>
 								<v-list-item-group>
 									<v-list-item>
-										
 									</v-list-item>
 								</v-list-item-group>
-							</v-list> -->
+							</v-list>
 						</v-expansion-panel-content>
 					</v-expansion-panel>
 				</v-expansion-panels>
