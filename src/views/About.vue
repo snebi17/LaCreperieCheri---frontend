@@ -1,5 +1,5 @@
 <template>
-	<v-container secondary fluid fill-height id="about">
+	<v-container success fluid fill-height id="about">
 		<v-row justify="center" align="center" class="px-10">
 			<v-col class="text-center align-items-center" color="success" cols="12">
 				<h5 class="text-h5 text-md-h3 font-weight-bold">

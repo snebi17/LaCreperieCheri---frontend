@@ -48,12 +48,14 @@
 				x-large 
 				@click="drawer = true"
 				icon
+				color="secondary"
 			></v-app-bar-nav-icon>
 			<v-spacer></v-spacer>
 			<v-btn 
 				x-large 
 				icon
 				@click="open('https://www.facebook.com/LaCreperieCheriPalacinke/')"
+				color="secondary"
 			>
 				<i class="fa fa-facebook fa-lg"></i>
 			</v-btn>
@@ -61,6 +63,7 @@
 				x-large
 				icon
 				@click="open('https://www.instagram.com/lacreperie_cheri/')"
+				color="secondary"
 			>
 				<i class="fa fa-instagram fa-lg"></i>
 			</v-btn>
@@ -68,6 +71,7 @@
 				x-large 
 				icon
 				@click="open('https://www.tripadvisor.com/Restaurant_Review-g274873-d23450735-Reviews-La_Creperie_Cheri-Ljubljana_Upper_Carniola_Region.html')"
+				color="secondary"
 			>
 				<i class="fa fa-tripadvisor fa-lg"></i>
 			</v-btn>
