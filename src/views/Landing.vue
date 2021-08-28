@@ -1,8 +1,18 @@
 <template>
     <v-container fluid fill-height class="v-container__custom">
+<<<<<<< HEAD
         <v-row align="center v-row__opacity">                
             <v-col class="text-center">
                 <p class="text-h5 text-md-h3 font-weight-bold secondary--text">La Crêperie Chéri</p>
+=======
+        <v-row 
+            align="center" 
+            justify="center"
+            class="layer"
+        >                
+            <v-col class="text-center" cols="4">
+                <p class="text-h5 text-md-h2 secondary--text">La Crêperie Chéri</p>
+>>>>>>> 270cdad55c6dbfff66c1e08819e4a90a5e0cbad5
             </v-col>
         </v-row>
     </v-container>
@@ -10,7 +20,12 @@
 
 <script>
 export default {
-    name: 'Landing'   
+    name: 'Landing',
+    mounted: {
+        isMobile() {
+            return screen.width <= 480;
+        }
+    }
 }
 </script>
 
@@ -25,5 +40,10 @@ export default {
         position: absolute;
         width: 100%;
         height: 100%;
+    }
+    .layer {
+        width: 100%;
+        height: 100%;
+        color: rgba(0, 0, 0, .5);
     }
 </style>
