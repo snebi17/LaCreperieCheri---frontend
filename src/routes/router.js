@@ -4,40 +4,38 @@ import VueRouter from "vue-router";
 const routes = [
 	{
 		path: "*",
-		component: () => import("../views/NotFound.vue"),
+		component: () => import("../views/NotFound.vue")
 	},
 	{
 		path: "/",
 		name: "Landing",
-		component: () => import("../views/Landing.vue"),
+		component: () => import("../views/Landing.vue")
 	},
 	{
 		path: "/menu",
 		name: "Menu",
-		component: () => import("../views/Menu.vue"),
-		children: [
-			{
-				path: "/menu/make-your-own",
-				name: "MakeYourOwn",
-				component: () => import("../views/MakeYourOwn.vue"),
-			},
-		],
+		component: () => import("../views/Menu.vue")
 	},
 	{
 		path: "/gallery",
 		name: "Gallery",
-		component: () => import("../views/Gallery.vue"),
+		component: () => import("../views/Gallery.vue")
 	},
 	{
 		path: "/about",
 		name: "About",
-		component: () => import("../views/About.vue"),
+		component: () => import("../views/About.vue")
 	},
 	{
 		path: "/contact",
 		name: "Contact",
-		component: () => import("../views/Contact.vue"),
+		component: () => import("../views/Contact.vue")
 	},
+	{
+		path: "/order",
+		name: "Order",
+		component: () => import("../views/Order.vue")
+	}
 ];
 
 const router = new VueRouter({

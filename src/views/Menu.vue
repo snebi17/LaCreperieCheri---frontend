@@ -1,228 +1,208 @@
 <template>
-	<!-- <v-container fluid secondary>
-		<v-container>
-			<v-row justify="center" align="center">
-				<v-col class="text-center align-items-center" color="success" cols="12">
-					<h5 class="text-h5 text-md-h3 font-weight-bold">
-						Premium palačinke
-					</h5>
-					<p class="text-body-1 font-weight-regular">
-						Poskusite naše premium palačinke, ne bo Vam žal
-					</p>
-				</v-col>
-			</v-row>
-			<v-row>
-				<v-col class="d-flex justify-end">
-					<v-hover>
-						<template v-slot:default="{ hover }" class="border">
-							<v-card width="400" height="100%" tile>
-								<v-img src="../assets/laPistacchio2.jpg"></v-img>
-								<v-overlay v-if="hover" absolute>
-									<v-card-title class="text-h4 font-weight-bold"
-										>La Bomba
-									</v-card-title>
-									<v-card-subtitle class="text-subtitle-2"
-										>Sestavine:
-									</v-card-subtitle>
-									<v-card-text class="text-body-1 m-0">
-										<ul>
-											<li>bela premium čokolada</li>
-											<li>pistacija</li>
-											<li>čokoladne kroglice</li>
-											<li>plazma</li>
-											<li>maline</li>
-											<li>Kinder čokolada</li>
-										</ul>
-									</v-card-text>
-								</v-overlay>
-							</v-card>
-						</template>
-					</v-hover>
-				</v-col>
-				<v-col>
-					<v-hover>
-						<template v-slot:default="{ hover }" class="mr-auto ml-0">
-							<v-card width="400" height="100%" tile>
-								<v-img src="../assets/whiteJaffa3.jpg"></v-img>
-								<v-overlay v-if="hover" absolute>
-									<v-card-title class="text-h4 font-weight-bold"
-										>White Jaffa
-									</v-card-title>
-									<v-card-subtitle class="text-subtitle-2"
-										>Sestavine:
-									</v-card-subtitle>
-									<v-card-text class="text-body-1 m-0">
-										<ul>
-											<li>ribana pomaranča</li>
-											<li>bela čokolada (2x preliv)</li>
-											<li>Milka čokoladke</li>
-											<li>čokoladne mrvice</li>
-											<li>ribana crunchy bela čokolada</li>
-										</ul>
-									</v-card-text>
-								</v-overlay>
-							</v-card>
-						</template>
-					</v-hover>
-				</v-col>
-			</v-row>
-			<v-row class="pb-16">
-				<v-col class="d-flex justify-end">
-					<v-hover>
-						<template v-slot:default="{ hover }" class="ml-auto mr-0">
-							<v-card width="400" height="100%" tile>
-								<v-img src="../assets/american-pie.jpg"></v-img>
-								<v-overlay v-if="hover" absolute>
-									<v-card-title class="text-h4 font-weight-bold"
-										>American Pie
-									</v-card-title>
-									<v-card-subtitle class="text-subtitle-2"
-										>Sestavine:
-									</v-card-subtitle>
-									<v-card-text class="text-body-1 m-0">
-										<ul>
-											<li>ribana jabolka</li>
-											<li>cimet</li>
-											<li>bela premium čokolada</li>
-											<li>lešnik</li>
-											<li>vanilijev puding</li>
-										</ul>
-									</v-card-text>
-								</v-overlay>
-							</v-card>
-						</template>
-					</v-hover>
-				</v-col>
-				<v-col>
-					<v-hover>
-						<template v-slot:default="{ hover }" class="mr-auto ml-0">
-							<v-card width="400" height="100%" tile>
-								<v-img src="../assets/ruby1.jpg"></v-img>
-								<v-overlay v-if="hover" absolute :opacity=".6">
-									<v-card-title class="text-h4 font-weight-bold"
-										>Ruby
-									</v-card-title>
-									<v-card-subtitle class="text-subtitle-2"
-										>Sestavine:
-									</v-card-subtitle>
-									<v-card-text class="text-body-1 m-0">
-										<ul>
-											<li>crunchy jagoda</li>
-											<li>rubi namaz</li>
-											<li>rubi ribana čokolada</li>
-											<li>rubi jajčka</li>
-										</ul>
-									</v-card-text>
-								</v-overlay>
-							</v-card>
-						</template>
-					</v-hover>
-				</v-col>
-			</v-row>
-			<v-row class="d-none d-md-flex">
-				<v-col>
-					<v-toolbar flat color="transparent" class="mt-16">
-						<v-toolbar-items>
-							<v-col>
-								<v-btn ref="sweet" x-large tile depressed color="primary" @click="toggle">Sladko</v-btn>
-							</v-col>
-							<v-col>
-								<v-btn ref="salty" large tile depressed color="primary" @click="toggle">Slano</v-btn>
-							</v-col>
-							<v-col>
-								<v-btn ref="other" large tile depressed color="primary" @click="toggle">Pijače</v-btn>
-							</v-col>
-						</v-toolbar-items>
-					</v-toolbar>
-				</v-col>
-			</v-row>
-			<v-container fluid primary class="py-16 px-16 mb-16">
-				<v-container v-for="group in menu" :key="group.id">
+	<v-container primary fluid class="pt-16">
+		<v-row justify="center">
+			<v-col cols="12" md="6">
+				<v-container>
 					<v-row>
-						<v-col v-for="(items, type) in group" :key="type.id">
-							<v-row class="text-h5 font-weight-bold secondary--text">
-								{{ type }}
-							</v-row>
-							<v-row>
-								<v-list disabled class="col-3" color="secondary">
-									<v-list-item-group>
-										<v-list-item v-for="item in items" :key="item.id" align="center">
-											<v-list-item-content>
-												<v-list-item-title v-text="item.name"></v-list-item-title>
-												<v-list-item-title class="font-weight-bold" v-text="`${item.price.toFixed(2)} €`"></v-list-item-title>
-											</v-list-item-content>
-										</v-list-item>
-									</v-list-item-group>
-								</v-list>
-							</v-row>
+						<v-col>
+							<v-tabs 
+								background-color="primary"
+								:centered="mobile"
+							>
+								<v-tab @click="toggle(0)">Sladko</v-tab>
+								<v-tab @click="toggle(1)">Slano</v-tab>
+								<v-tab @click="toggle(2)">Pijače</v-tab>
+							</v-tabs>
+						</v-col>
+					</v-row>
+					<v-row>
+						<v-col>
+							<v-expansion-panels
+								v-for="products in menu"
+								:key="products.id"
+								tile
+								elevation="5"
+								focusable
+								class="v-expansion-panels__custom"
+							>
+								<v-expansion-panel
+									v-for="(items, key) in products"
+									:key="key.id"
+									dense
+									depressed
+								>
+									<v-expansion-panel-header color="secondary">
+										{{ key }}
+									</v-expansion-panel-header>
+									<v-expansion-panel-content
+										v-for="item in items"
+										:key="item.id"
+										color="primary"
+									>
+										<p class="text-body-2 pt-5">
+											{{ item.name }}<span class="ml-2 font-weight-bold">{{ `${item.price.toFixed(2)} €`}}</span>
+										</p>
+									</v-expansion-panel-content>
+								</v-expansion-panel>
+							</v-expansion-panels>
 						</v-col>
 					</v-row>
 				</v-container>
-			</v-container>
-			<v-row justify="center" align="center">
-				<v-col class="text-center align-items-center" color="success" cols="12">
-					<h5 class="text-h5 text-md-h3 font-weight-bold">
-						Sestavi svojo palačinko
-					</h5>
-					<p class="text-body-1 font-weight-regular">
-						Si želiš palačinko sestavljeno po svojem okusu? Klikni gumb,
-						sestavi palačinko in oddaj naročilo.
-					</p>
-					<v-btn rounded color="primary" @click="overlay = true">Sestavi svojo</v-btn>
-				</v-col>
-			</v-row>
-		</v-container>
-		<v-overlay :value="overlay" :opacity=".8">
-			<v-container class="full-size" fluid>
-				<v-btn small color="red" fab @click="overlay = false" class="top-right">
-					<v-icon>mdi-close</v-icon>
-				</v-btn>
-				<v-container justify="center" align="center">				
-					<MakeYourOwn :menu="menu"/>
+			</v-col>
+			<v-col cols="12" class="v-cards__custom">
+				<v-container>
+					<v-row justify="center">
+						<v-col cols="12" md="4">
+							<v-hover>
+								<template 
+									v-slot:default="{ hover }"
+								>
+									<v-card tile>
+										<v-img src="../assets/laPistacchio2.jpg"></v-img>
+										<v-overlay 
+											v-if="hover" 
+											absolute
+											:opacity=".6"
+										>
+											<v-card-title class="text-h5 text-md-h3 font-weight-bold"
+												>La Bomba
+											</v-card-title>
+											<v-card-subtitle class="text-subtitle-2"
+												>Sestavine:
+											</v-card-subtitle>
+											<v-card-text class="text-body-2 text-md-body-1 m-0">
+												<ul>
+													<li>bela premium čokolada</li>
+													<li>pistacija</li>
+													<li>čokoladne kroglice</li>
+													<li>plazma</li>
+													<li>maline</li>
+													<li>Kinder čokolada</li>
+												</ul>
+											</v-card-text>
+										</v-overlay>
+									</v-card>
+								</template>
+							</v-hover>
+						</v-col>
+						<v-col cols="12" md="4">
+							<v-hover>
+								<template 
+									v-slot:default="{ hover }" 
+								>
+									<v-card tile>
+										<v-img src="../assets/whiteJaffa3.jpg"></v-img>
+										<v-overlay 
+											v-if="hover" 
+											absolute
+											:opacity=".6"
+										>
+											<v-card-title class="text-h5 text-md-h3 font-weight-bold"
+												>White Jaffa
+											</v-card-title>
+											<v-card-subtitle class="text-subtitle-2"
+												>Sestavine:
+											</v-card-subtitle>
+											<v-card-text class="text-body-2 text-md-body-1 m-0">
+												<ul>
+													<li>ribana pomaranča</li>
+													<li>bela čokolada (2x namaz)</li>
+													<li>Milka čokoladke</li>
+													<li>čokoladne mrvice</li>
+												</ul>
+											</v-card-text>
+										</v-overlay>
+									</v-card>
+								</template>
+							</v-hover>
+						</v-col>
+					</v-row>
+					<v-row justify="center">
+						<v-col cols="12" md="4">
+							<v-hover>
+								<template 
+									v-slot:default="{ hover }" 
+								>
+									<v-card tile>
+										<v-img src="../assets/american-pie.jpg"></v-img>
+										<v-overlay 
+											v-if="hover" 
+											absolute
+											:opacity=".6"
+										>
+											<v-card-title class="text-h5 text-md-h3 font-weight-bold"
+												>American Pie
+											</v-card-title>
+											<v-card-subtitle class="text-subtitle-2"
+												>Sestavine:
+											</v-card-subtitle>
+											<v-card-text class="text-body-2 text-md-body-1 m-0">
+												<ul>
+													<li>ribana jabolka</li>
+													<li>cimet</li>
+													<li>bela premium čokolada</li>
+													<li>lešnik</li>
+													<li>vanilijev puding</li>
+													<li>čokoladne mrvice</li>
+												</ul>
+											</v-card-text>
+										</v-overlay>
+									</v-card>
+								</template>
+							</v-hover>
+						</v-col>
+						<v-col cols="12" md="4">
+							<v-hover>
+								<template 
+									v-slot:default="{ hover }" 
+								>
+									<v-card tile>
+										<v-img src="../assets/ruby1.jpg"></v-img>
+										<v-overlay 
+											v-if="hover" 
+											absolute 
+											:opacity=".6"
+										>
+											<v-card-title class="text-h5 text-md-h3 font-weight-bold"
+												>Ruby
+											</v-card-title>
+											<v-card-subtitle class="text-subtitle-2"
+												>Sestavine:
+											</v-card-subtitle>
+											<v-card-text class="text-body-2 text-md-body-1 m-0">
+												<ul>
+													<li>crunchy jagoda</li>
+													<li>rubi namaz</li>
+													<li>KitKat</li>
+													<li>čokoladne praline</li>
+													<li>dekoracija</li>
+												</ul>
+											</v-card-text>
+										</v-overlay>
+									</v-card>
+								</template>
+							</v-hover>
+						</v-col>
+					</v-row>
 				</v-container>
-			</v-container>
-		</v-overlay>
-	</v-container> -->
-	<v-container success fluid class="pt-16">
-		<v-row>
-			<v-col>
-				<v-tabs>
-					<v-tab @click="toggle">Sladko</v-tab>
-					<v-tab @click="toggle">Slano</v-tab>
-					<v-tab @click="toggle">Pijače</v-tab>
-				</v-tabs>
 			</v-col>
 		</v-row>
-		<v-row justify="center">
-			<v-col>
-				<v-expansion-panels
-					v-for="group in menu"
-					:key="group.id"
-				>
-					<v-expansion-panel
-						v-for="(name, items) in group"
-						:key="name.id"
-					>
-						<v-expansion-panel-header>
-							{{ name }}
-						</v-expansion-panel-header>
-						<v-expansion-panel-content
-							v-for="item in items"
-							:key="item.id"
+		<v-row>
+			<v-container>
+				<v-row>
+					<v-col>
+						<v-card
+							flat
+							color="transparent"
 						>
-							<v-list>
-								<v-list-item-group>
-									<v-list-item>
-									</v-list-item>
-								</v-list-item-group>
-							</v-list>
-						</v-expansion-panel-content>
-					</v-expansion-panel>
-				</v-expansion-panels>
-			</v-col>
-		</v-row>
-		<v-row>
-
+							<v-card-title class="text-h5 text-md-h3">Oddaj naročilo </v-card-title>
+							<v-card-text>
+								<v-btn :to="{ path: '/order' }">tukaj</v-btn>
+							</v-card-text>
+						</v-card>
+					</v-col>
+				</v-row>
+			</v-container>
 		</v-row>
 	</v-container>
 </template>
@@ -230,41 +210,52 @@
 <script>
 import axios from "axios";
 
-// import MakeYourOwn from './MakeYourOwn.vue';
-
 export default {
 	name: "Menu",
-	components: {
-		// MakeYourOwn
-	},
 	data() {
 		return {
+			items: [],
 			menu: [],
-			errors: null,
-			overlay: false,
-			toggled: false
+			mobile: false
 		};
 	},
 	methods: {
 		getItems() {
-			axios.get("http://localhost:4000/menu")
+			axios.get("http://192.168.0.26:4000/menu")
 				.then(items => {
-					this.menu = items.data;
-					console.log(this.menu);
+					this.items = items.data;
+					this.menu = this.items[0];
 				})
 				.catch(errors => this.errors = errors);
 		},
-		toggle() {
-			this.toggled = !this.toggled;
-			console.log(this.menu);
+		toggle(index) {
+			this.menu = [];
+			this.menu = this.items[index];
+		},
+		isMobile() {
+			console.log(screen);
+			return screen.width <= 760;
 		}
 	},
 	created() {
 		this.getItems();
+		this.mobile = this.isMobile();
 	}
 };
 </script>
 
 <style scoped>
-
+	p {
+		padding: 0;
+		margin: 0;
+	}
+	.v-expansion-panels__custom {
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
+	.v-img__custom {
+		
+	}
+	.v-cards__custom {
+		border: 5px solid ;
+	}
 </style>
