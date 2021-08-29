@@ -1,7 +1,7 @@
 <template>
-	<v-container primary fluid class="pt-16">
+	<v-container primary fill-height fluid class="pt-16">
 		<v-row justify="center">
-			<v-col cols="12" md="6">
+			<v-col cols="12">
 				<v-container>
 					<v-row>
 						<v-col>
@@ -49,10 +49,10 @@
 					</v-row>
 				</v-container>
 			</v-col>
-			<v-col cols="12" class="v-cards__custom">
+			<v-col cols="12" md="6" class="v-cards__custom">
 				<v-container>
 					<v-row justify="center">
-						<v-col cols="12" md="4">
+						<v-col cols="12">
 							<v-hover>
 								<template 
 									v-slot:default="{ hover }"
@@ -85,7 +85,7 @@
 								</template>
 							</v-hover>
 						</v-col>
-						<v-col cols="12" md="4">
+						<v-col cols="12">
 							<v-hover>
 								<template 
 									v-slot:default="{ hover }" 
@@ -118,7 +118,7 @@
 						</v-col>
 					</v-row>
 					<v-row justify="center">
-						<v-col cols="12" md="4">
+						<v-col cols="12">
 							<v-hover>
 								<template 
 									v-slot:default="{ hover }" 
@@ -151,7 +151,7 @@
 								</template>
 							</v-hover>
 						</v-col>
-						<v-col cols="12" md="4">
+						<v-col cols="12">
 							<v-hover>
 								<template 
 									v-slot:default="{ hover }" 
@@ -221,7 +221,7 @@ export default {
 	},
 	methods: {
 		getItems() {
-			axios.get("http://192.168.0.26:4000/menu")
+			axios.get("http://192.168.0.28:4000/menu")
 				.then(items => {
 					this.items = items.data;
 					this.menu = this.items[0];
@@ -251,11 +251,5 @@ export default {
 	}
 	.v-expansion-panels__custom {
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	}
-	.v-img__custom {
-		
-	}
-	.v-cards__custom {
-		border: 5px solid ;
 	}
 </style>

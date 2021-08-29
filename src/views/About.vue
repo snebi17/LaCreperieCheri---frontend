@@ -22,10 +22,4 @@ export default {
 </script>
 
 <style>
-#about {
-	height: 100vh;
-}
-/* #about v-parralax > img {
-        height: 50%;
-    } */
 </style>

@@ -1,142 +1,97 @@
 <template>
     <v-container primary fluid class="pt-16">
         <v-row>
+            <v-col class="text-center">
+                <p class="text-h5 text-md-h3 font-weight-bold success--text">Sestavi svojo palačinko</p>
+            </v-col>
+        </v-row>
+        <v-row>
             <v-col>
-                <v-stepper
-                    v-model="e6"
-                    vertical
-                    flat
-                >
-                    <v-stepper-step
-                        :complete="e6 > 1"
-                        step="1"
-                    >
-                        Izberi vrsto palačinke
-                    </v-stepper-step>
-                    <v-stepper-content step="1">
-                       <v-row class="pa-5 border">
-                            <v-col cols="1">
-                                <v-card
-                                    depressed
-                                    tile
-                                    @click="getItems(0)"
-                                >
-                                    <v-card-title>Sladko</v-card-title>
-                                </v-card>
-                            </v-col>
-                            <v-col cols="1">
-                                <v-card
-                                    depressed
-                                    tile
-                                    @click="getItems(1)"
-                                >
-                                    <v-card-title>Slano</v-card-title>
-                                </v-card>
-                            </v-col>
-                       </v-row>
-                        <v-btn 
-                            @click="e6 = 2"
-                            tile
-                        >Naprej</v-btn>
-                    </v-stepper-content>
-                    <v-stepper-step
-                        :complete="e6 > 2"
-                        step="2"
-                    >
-                        Izberi osnovo
-                    </v-stepper-step>
-                    <v-stepper-content step="2">
-                        <v-row>
-                            <v-col>
-                                <v-expansion-panels
-                                    v-for="products in items"
-                                    :key="products.id"
-                                    tile
-                                    elevation="5"
-                                    focusable
-                                    class="v-expansion-panels__custom"
-                                >
-                                    <v-expansion-panel
-                                        v-for="(items, key) in products"
-                                        :key="key.id"
-                                        dense
-                                        depressed
+                <v-stepper v-model="e1">
+                    <v-stepper-header>
+                        <v-stepper-step
+                            :complete="e1 > 1"
+                            step="1"
+                        >
+                            Okus
+                        </v-stepper-step>
+                        <v-divider></v-divider>
+                        <v-stepper-step
+                            :complete="e1 > 2"
+                            step="2"
+                        >
+                            Osnova
+                        </v-stepper-step>
+                        <v-divider></v-divider>
+                        <v-stepper-step
+                            :complete="e1 > 3"
+                            step="3"
+                        >
+                            Namaz
+                        </v-stepper-step>
+                        <v-divider></v-divider>
+                        <v-stepper-step
+                            :complete="e1 > 4"
+                            step="4"
+                        >
+                            Nadev
+                        </v-stepper-step>
+                        <v-divider></v-divider>
+                        <v-stepper-step
+                            :complete="e1 > 5"
+                            step="5"
+                        >
+                            Preliv
+                        </v-stepper-step>
+                        <v-divider></v-divider>
+                        <v-stepper-step
+                            step="6"
+                        >
+                            Pijača
+                        </v-stepper-step>
+                    </v-stepper-header>
+                    <v-stepper-items>
+                        <v-stepper-content step="1">
+                            <v-row justify="center" class="pa-16">
+                                <v-col cols="12" md="3">
+                                    <v-card
+                                        @click="taste = 'sweet'; e1 = 2"
+                                        class="text-center pa-16 text-h5 text-md-h4"
                                     >
-                                        <template v-if="key === 'Palačinke fi 50'">
-                                            <v-expansion-panel-header color="secondary">
-                                                {{ key }}
-                                            </v-expansion-panel-header>
-                                            <v-expansion-panel-content
-                                                v-for="item in items"
-                                                :key="item.id"
-                                                color="primary"
-                                            >
-                                                <p class="text-body-2 pt-5">
-                                                    {{ item.name }}<span class="ml-2 font-weight-bold">{{ `${item.price.toFixed(2)} €`}}</span>
-                                                </p>
-                                            </v-expansion-panel-content>
-                                        </template>
-                                    </v-expansion-panel>
-                                </v-expansion-panels>
-                            </v-col>
-                        </v-row>
-                        <v-btn 
-                            @click="e6 = 3"
-                            tile
-                        >Naprej</v-btn>
-                    </v-stepper-content>
-                    <v-stepper-step
-                        :complete="e6 > 3"
-                        step="3"
-                    >
-                        Izberi namaz
-                    </v-stepper-step>
-                    <v-stepper-content step="3">
-                        <v-btn 
-                            @click="e6 = 4"
-                            tile
-                        >Naprej</v-btn>
-                    </v-stepper-content>
-                    <v-stepper-step
-                        :complete="e6 > 4"
-                        step="4"
-                    >
-                        Izberi nadev
-                    </v-stepper-step>
-                    <v-stepper-content step="4">
-                        <v-btn 
-                            @click="e6 = 5"
-                            tile
-                        >Naprej</v-btn>
-                    </v-stepper-content>
-                    <v-stepper-step
-                        :complete="e6 > 5"
-                        step="5"
-                    >   
-                        Izberi preliv
-                    </v-stepper-step>
-                    <v-stepper-content step="5">
-                        <v-btn 
-                            @click="e6 = 6"
-                            tile
-                        >Naprej</v-btn>
-                    </v-stepper-content>
-                    <v-stepper-step
-                        :complete="e6 > 6"
-                        step="6"
-                    >   
-                        Izberi pijačo
-                    </v-stepper-step>
-                    <v-stepper-content step="6">
-                        <v-btn 
-                            @click="addToCart()"
-                            tile
-                        >Dodaj v košarico</v-btn>
-                        <v-btn 
-                            @click="placeOrder()"
-                            tile
-                        >Oddaj naročilo</v-btn>
-                    </v-stepper-content>
+                                        Sladko
+                                    </v-card>
+                                </v-col>
+                                <v-col cols="12" md="3">
+                                    <v-card
+                                        @click="taste = 'salty'; e1 = 2"
+                                        class="text-center pa-16 text-h5 text-md-h4"
+                                    >
+                                        Slano
+                                    </v-card>
+                                </v-col>
+                            </v-row>
+                        </v-stepper-content>
+                        <v-stepper-content step="2">
+                            <v-btn @click="e1 = 3">
+                                Naprej
+                            </v-btn>
+                        </v-stepper-content>
+                        <v-stepper-content step="3">
+                            <v-btn @click="e1 = 4">
+                                Naprej
+                            </v-btn>
+                        </v-stepper-content>
+                        <v-stepper-content step="4">
+                            <v-btn @click="e1 = 5">
+                                Naprej
+                            </v-btn>
+                        </v-stepper-content>
+                        <v-stepper-content step="5">
+                            <v-btn @click="e1 = 1">
+                                Naprej
+                            </v-btn>
+                        </v-stepper-content>
+                    </v-stepper-items>
                 </v-stepper>
             </v-col>
         </v-row>
@@ -154,7 +109,8 @@ export default {
             cart: [],
             successAlert: null,
             errorAlert: null,
-            e6: 1
+            e1: 1,
+            taste: ''
         };
     },
     created() {
