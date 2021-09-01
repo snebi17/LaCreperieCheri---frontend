@@ -1,5 +1,6 @@
 <template>
     <v-container fluid fill-height class="v-container__custom">
+        <p>{{ $t('message') }}</p>
         <v-row 
             align="center" 
             justify="center"
