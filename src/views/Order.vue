@@ -1,5 +1,100 @@
 <template>
     <v-container primary fluid class="pt-16">
+        <v-row>
+            <v-col class="text-center">
+                <p class="text-h5 text-md-h3 font-weight-bold success--text">Sestavi svojo palačinko</p>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col>
+                <v-stepper v-model="e1">
+                    <v-stepper-header>
+                        <v-stepper-step
+                            :complete="e1 > 1"
+                            step="1"
+                        >
+                            Okus
+                        </v-stepper-step>
+                        <v-divider></v-divider>
+                        <v-stepper-step
+                            :complete="e1 > 2"
+                            step="2"
+                        >
+                            Osnova
+                        </v-stepper-step>
+                        <v-divider></v-divider>
+                        <v-stepper-step
+                            :complete="e1 > 3"
+                            step="3"
+                        >
+                            Namaz
+                        </v-stepper-step>
+                        <v-divider></v-divider>
+                        <v-stepper-step
+                            :complete="e1 > 4"
+                            step="4"
+                        >
+                            Nadev
+                        </v-stepper-step>
+                        <v-divider></v-divider>
+                        <v-stepper-step
+                            :complete="e1 > 5"
+                            step="5"
+                        >
+                            Preliv
+                        </v-stepper-step>
+                        <v-divider></v-divider>
+                        <v-stepper-step
+                            step="6"
+                        >
+                            Pijača
+                        </v-stepper-step>
+                    </v-stepper-header>
+                    <v-stepper-items>
+                        <v-stepper-content step="1">
+                            <v-row justify="center" class="pa-16">
+                                <v-col cols="12" md="3">
+                                    <v-card
+                                        @click="taste = 'sweet'; e1 = 2"
+                                        class="text-center pa-16 text-h5 text-md-h4"
+                                    >
+                                        Sladko
+                                    </v-card>
+                                </v-col>
+                                <v-col cols="12" md="3">
+                                    <v-card
+                                        @click="taste = 'salty'; e1 = 2"
+                                        class="text-center pa-16 text-h5 text-md-h4"
+                                    >
+                                        Slano
+                                    </v-card>
+                                </v-col>
+                            </v-row>
+                        </v-stepper-content>
+                        <v-stepper-content step="2">
+                            <v-btn @click="e1 = 3">
+                                Naprej
+                            </v-btn>
+                        </v-stepper-content>
+                        <v-stepper-content step="3">
+                            <v-btn @click="e1 = 4">
+                                Naprej
+                            </v-btn>
+                        </v-stepper-content>
+                        <v-stepper-content step="4">
+                            <v-btn @click="e1 = 5">
+                                Naprej
+                            </v-btn>
+                        </v-stepper-content>
+                        <v-stepper-content step="5">
+                            <v-btn @click="e1 = 1">
+                                Naprej
+                            </v-btn>
+                        </v-stepper-content>
+                    </v-stepper-items>
+                </v-stepper>
+            </v-col>
+        </v-row>
             <v-row>
                 <v-col class="text-center">
                     <p class="text-h5 text-md-h3 font-weight-bold success--text">Sestavi svojo palačinko</p>
@@ -106,7 +201,8 @@ export default {
             cart: [],
             successAlert: null,
             errorAlert: null,
-            e1: 1
+            e1: 1,
+            taste: ''
         };
     },
     methods: {

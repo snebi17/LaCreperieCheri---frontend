@@ -16,6 +16,11 @@
 				<iframe></iframe>
 			</v-col>
 		</v-row>
+		<v-row>
+			<v-col cols="4">
+				<p class="text-h5 text-md-h3 font-weight-bold secondary--text">Vaše mnenje nam ogromno pomeni</p>
+			</v-col>
+		</v-row>
 	</v-container>
 </template>
 

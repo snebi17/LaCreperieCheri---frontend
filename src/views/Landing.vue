@@ -1,10 +1,11 @@
 <template>
-    <v-container fluid fill-height :class="[ isMobile ? 'v-container__mobile' : 'v-container__desktop' ]">
+    <v-container fluid fill-height class="v-container__custom">
+        <p>{{ $t('message') }}</p>
         <v-row 
             align="center" 
             justify="center"
             class="v-row__opacity"
-        >                
+        >
             <v-col class="text-center" cols="4">
                 <p class="text-h5 text-sm-h4 text-md-h3 text-lg-h2 font-weight-bold secondary--text">La Crêperie Chéri</p>
             </v-col>
@@ -36,10 +37,10 @@ export default {
         background: url('../assets/laPistacchio2.jpg');
         background-size: contain;
     }
-    .v-container__mobile {
-        background: url('../assets/laPistacchio2.jpg');
+    /* .v-container__mobile {
+        background: url('../assets/laPistacchio2-mobile.jpg');
         background-size: cover;
-    }
+    } */
     .v-row__opacity {
         position: absolute;
         width: 100%;

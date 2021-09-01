@@ -1,0 +1,9 @@
+{
+    "message": "hello i18n !!",
+    "nav": {
+        "menu": "Menu",
+        "gallery": "Gallery",
+        "about": "About",
+        "schedule_contact": "Schedule and contact"
+    }
+}
