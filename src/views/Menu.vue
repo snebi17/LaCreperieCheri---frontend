@@ -6,8 +6,9 @@
 					<v-row>
 						<v-col>
 							<v-tabs 
-								background-color="primary"
-								:centered="mobile"
+								background-color="transparent"
+								color="secondary"
+								:centered="isMobile"
 							>
 								<v-tab @click="toggle(0)">Sladko</v-tab>
 								<v-tab @click="toggle(1)">Slano</v-tab>
@@ -20,9 +21,9 @@
 							<v-expansion-panels
 								v-for="products in menu"
 								:key="products.id"
-								tile
-								elevation="5"
 								focusable
+								tile
+								flat
 								class="v-expansion-panels__custom"
 							>
 								<v-expansion-panel
@@ -185,19 +186,27 @@
 						</v-col>
 					</v-row>
 				</v-container>
-			</v-col>
-		</v-row>
+			</v-col>-->
+		</v-row> 
 		<v-row>
 			<v-container>
-				<v-row>
-					<v-col>
+				<v-row justify="center">
+					<v-col cols="12" xs="6" md="5" lg="4">
 						<v-card
 							flat
-							color="transparent"
+							tile
+							color="success"
+							class="py-8"
 						>
-							<v-card-title class="text-h5 text-md-h3">Oddaj naročilo </v-card-title>
-							<v-card-text>
-								<v-btn :to="{ path: '/order' }">tukaj</v-btn>
+							<v-card-title class="text-h5 text-md-h3 justify-center primary--text">Oddaj naročilo </v-card-title>
+							<v-card-text class="text-center">
+								<v-btn 
+									depressed
+									tile
+									color="primary"
+									class="success--text"
+									:to="{ path: '/order' }"
+								>tukaj</v-btn>
 							</v-card-text>
 						</v-card>
 					</v-col>
@@ -231,15 +240,18 @@ export default {
 		toggle(index) {
 			this.menu = [];
 			this.menu = this.items[index];
-		},
-		isMobile() {
-			console.log(screen);
-			return screen.width <= 760;
+		}
+	},
+	computed: {
+		isMobile: function () {
+			return this.mobile <= 600;
 		}
 	},
 	created() {
 		this.getItems();
-		this.mobile = this.isMobile();
+	},
+	mounted() {
+		this.mobile = screen.width;
 	}
 };
 </script>
@@ -250,6 +262,6 @@ export default {
 		margin: 0;
 	}
 	.v-expansion-panels__custom {
-		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		/* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 	}
 </style>
