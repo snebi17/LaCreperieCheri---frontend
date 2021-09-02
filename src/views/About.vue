@@ -11,7 +11,5 @@ export default {
 </script>
 
 <style>
-	#about {
-		height: 100vh;
-	}
+
 </style>

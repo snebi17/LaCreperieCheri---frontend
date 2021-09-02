@@ -13,28 +13,28 @@
 					:to="{ path: '/menu' }"
 					class="success--text"
 				>
-					Menu
+					{{ $t('nav.menu') }}
 				</v-list-item>
 				<v-list-item 
 					link
 					:to="{ path: '/gallery' }"
 					class="success--text"
 				>
-					Galerija
+					{{ $t('nav.gallery') }}
 				</v-list-item>
 				<v-list-item 
 					link
 					:to="{ path: '/about' }"
 					class="success--text"
 				>
-					O nas
+					{{ $t('nav.about') }}
 				</v-list-item>
 				<v-list-item 
 					link
 					:to="{ path: '/contact' }"
 					class="success--text"
 				>
-					Delovni čas in kontakt
+					{{ $t('nav.schedule_contact') }}
 				</v-list-item>
 			</v-list>
 		</v-navigation-drawer>
@@ -52,6 +52,27 @@
 				color="secondary"
 			></v-app-bar-nav-icon>
 			<v-spacer></v-spacer>
+			<v-menu offset-y>
+				<template v-slot:activator="{ attrs, on }">
+					<v-btn
+						v-bind="attrs"
+						v-on="on"
+						icon
+						x-large	
+					>
+						{{ $i18n.locale.toUpperCase() }}
+						<v-icon></v-icon>
+					</v-btn>
+				</template>
+				<v-list>
+					<v-list-item
+						v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang"
+					>
+						<v-list-item-title>{{ lang }}</v-list-item-title>
+						<v-icon-lang :iconLang="lang"></v-icon-lang>
+					</v-list-item>
+				</v-list>
+			</v-menu>
 			<v-btn 
 				x-large 
 				icon
