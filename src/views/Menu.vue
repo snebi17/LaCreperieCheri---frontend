@@ -189,9 +189,9 @@
 			</v-col>-->
 		</v-row> 
 		<v-row>
-			<v-container>
+			<v-container fluid>
 				<v-row justify="center">
-					<v-col cols="12" xs="6" md="5" lg="4">
+					<v-col>
 						<v-card
 							flat
 							tile

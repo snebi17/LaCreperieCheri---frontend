@@ -5,8 +5,8 @@
             justify="center"
             class="v-row__opacity"
         >                
-            <v-col class="text-center" cols="4">
-                <p class="text-h5 text-sm-h4 text-md-h3 text-lg-h2 font-weight-bold secondary--text">La Crêperie Chéri</p>
+            <v-col class="text-center" cols="12" sm="10" md="8">
+                <p class="text-h5 text-sm-h4 text-md-h3 text-lg-h2 font-weight-italic secondary--text">La Crêperie Chéri</p>
             </v-col>
         </v-row>
     </v-container>

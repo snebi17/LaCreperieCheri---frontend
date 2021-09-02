@@ -43,6 +43,7 @@
 			color="transparent"
 			fixed
 			app
+			class="mb-16"
 		>
 			<v-app-bar-nav-icon 
 				x-large 
@@ -77,8 +78,8 @@
 			</v-btn>
 		</v-app-bar>
 		<v-main 
-			class="mt-n14 mt-md-n16"
 			app
+			class="mt-n14 mt-md-n16"
 		>
 			<v-layout fill-height>
 				<router-view></router-view>

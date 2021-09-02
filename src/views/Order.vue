@@ -1,12 +1,16 @@
 <template>
     <v-container primary fluid class="pt-16">
-            <v-row>
-                <v-col class="text-center">
-                    <p class="text-h5 text-md-h3 font-weight-bold success--text">Sestavi svojo palačinko</p>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col>
+            <v-container secondary>
+                <v-row>
+                    <v-col class="text-center">
+                        <v-lazy>
+                            <p class="text-h5 text-sm-h4 text-md-h3 success--text"><span class="font-weight-bold">Sestavi </span><span class="font-weight-italic">svojo palačinko</span></p>
+                        </v-lazy>
+                    </v-col>
+                </v-row>
+            </v-container>
+            <!-- <v-row justify="center">
+                <v-col cols="6">
                     <v-stepper v-model="e1">
                         <v-stepper-header>
                             <v-stepper-step 
@@ -42,7 +46,7 @@
                         <v-stepper-items>
                             <v-stepper-content step="1">
                                 <v-row justify="center" class="pa-16">
-                                    <v-col cols="12" md="3">
+                                    <v-col cols="12" md="5">
                                         <v-card
                                             @click="taste = 'sweet'; e1 = 2"
                                             class="text-center pa-16 text-h5 text-md-h4"
@@ -50,7 +54,7 @@
                                             Sladko
                                         </v-card>
                                     </v-col>
-                                     <v-col cols="12" md="3">
+                                     <v-col cols="12" md="5">
                                         <v-card
                                             @click="taste = 'salty'; e1 = 2"
                                             class="text-center pa-16 text-h5 text-md-h4"
@@ -61,6 +65,7 @@
                                 </v-row>
                             </v-stepper-content>
                             <v-stepper-content step="2">
+                                
                                 <v-btn 
                                     @click="e1++"
                                     tile
@@ -91,7 +96,7 @@
                         </v-stepper-items>
                     </v-stepper>
                 </v-col>
-            </v-row>
+            </v-row> -->
     </v-container>
 </template>
 
@@ -155,6 +160,9 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+    p {
+        padding: 0;
+        margin: 0;
+    }
 </style>
