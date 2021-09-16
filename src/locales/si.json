@@ -1,9 +1,57 @@
 {
-    "message": "živijo i18n !!",
+    "landing": "Začetna",
+    "english": "Angleščina",
+    "slovene": "Slovenščina",
+    "sweet": "Sladko",
+    "salty": "Slano",
+    "drinks": "Pijače",
     "nav": {
         "menu": "Cenik",
         "gallery": "Galerija",
         "about": "O nas",
-        "schedule_contact": "Delovnik in kontakt"
+        "schedule_contact": "Delovnik in kontakt",
+        "total": "Skupaj: ",
+        "order": "Naroči"
+    },
+    "order": {
+        "place": "Oddaj naročilo",
+        "here": "Tukaj",
+        "next": "Naprej",
+        "previous": "Nazaj",
+        "send": "Naroči",
+        "cart": "Nakupovalna košarica",
+        "custom": "Po meri",
+        "premium": "Premium",
+        "steps": [
+            {
+                "title": "Okus",
+                "subtitle": "Izberite okus vaše palačinke:"
+            },
+            {
+                "title": "Osnova",
+                "subtitle": "Izberite osnovo za palačinko:",
+                "text": ""
+            },
+            {
+                "title": "Namaz",
+                "subtitle": "Izberite namaz:",
+                "text": ""
+            },
+            {
+                "title": "Polnilo",
+                "subtitle": "Izberite polnilo:",
+                "text": ""
+            },
+            {
+                "title": "Preliv",
+                "subtitle": "Izberite preliv:",
+                "text": ""
+            },
+            {
+                "title": "Pijača",
+                "subtitle": "Izberite pijačo:",
+                "text": ""
+            }
+        ]
     }
 }

@@ -1,9 +1,75 @@
 {
-    "message": "hello i18n !!",
+    "landing": "Landing",
+    "english": "English",
+    "slovene": "Slovene",
+    "sweet": "Sweet",
+    "salty": "Salty",
+    "drinks": "Drinks",
     "nav": {
         "menu": "Menu",
         "gallery": "Gallery",
         "about": "About",
-        "schedule_contact": "Schedule and contact"
-    }
+        "schedule_contact": "Schedule and contact",
+        "total": "Total: ",
+        "order": "Order"
+    },
+    "order": {
+        "place": "Place order",
+        "here": "Here",
+        "next": "Next",
+        "previous": "Previous",
+        "send": "Order",
+        "cart": "Shopping cart",
+        "custom": "Custom",
+        "premium": "Premium",
+        "steps": [
+            {
+                "title": "Taste",
+                "subtitle": "Choose which taste you would like your pancake to be:"
+            },
+            {
+                "title": "Base",
+                "subtitle": "Choose your base:",
+                "text": "Note: that's the most important part of your pancake, so choose wisely."
+            },
+            {
+                "title": "Spread",
+                "subtitle": "Choose your spread:",
+                "text": "Note: the second most important part of your pancake... the soul of it!"
+            },
+            {
+                "title": "Filling",
+                "subtitle": "Choose your filling:",
+                "text": ""
+            },
+            {
+                "title": "Topping",
+                "subtitle": "Choose your topping:",
+                "text": ""
+            },
+            {
+                "title": "Drink",
+                "subtitle": "Choose your drink:",
+                "text": ""
+            }
+        ]
+    },
+    "premium": [
+        {
+            "title": "Pistacchio La Bomba",
+            "text": "Odio eu feugiat pretium nibh. Facilisis mauris sit amet massa vitae. Consectetur purus ut faucibus pulvinar elementum integer enim. Pellentesque elit eget gravida cum sociis. Vitae elementum curabitur vitae nunc sed. Lectus magna fringilla urna porttitor rhoncus dolor purus non. In fermentum posuere urna nec tincidunt. Consequat id porta nibh venenatis. Vel facilisis volutpat est velit egestas dui id ornare. Consectetur purus ut faucibus pulvinar. Imperdiet dui accumsan sit amet."
+        },
+        {
+            "title": "White Jaffa",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque elit eget gravida cum sociis natoque penatibus. Egestas congue quisque egestas diam in arcu cursus. Blandit cursus risus at ultrices mi tempus imperdiet. Proin fermentum leo vel orci porta non. Enim nunc faucibus a pellentesque sit amet porttitor eget dolor. Tortor at risus viverra adipiscing at in. Neque sodales ut etiam sit amet nisl purus. Sapien eget mi proin sed libero enim sed faucibus turpis. Egestas congue quisque egestas diam in arcu cursus euismod. Malesuada fames ac turpis egestas maecenas pharetra. Est sit amet facilisis magna etiam tempor orci eu."
+        },
+        {
+            "title": "American Pie",
+            "text": "Quis risus sed vulputate odio ut enim blandit volutpat. In egestas erat imperdiet sed euismod nisi porta lorem. Quis blandit turpis cursus in hac habitasse. Tortor aliquam nulla facilisi cras fermentum. Arcu bibendum at varius vel pharetra vel turpis nunc. Mi in nulla posuere sollicitudin. Ante metus dictum at tempor. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi. Faucibus et molestie ac feugiat sed lectus vestibulum mattis ullamcorper. Vulputate sapien nec sagittis aliquam malesuada."
+        },
+        {
+            "title": "Ruby",
+            "text": "Quis risus sed vulputate odio ut enim blandit volutpat. In egestas erat imperdiet sed euismod nisi porta lorem. Quis blandit turpis cursus in hac habitasse. Tortor aliquam nulla facilisi cras fermentum. Arcu bibendum at varius vel pharetra vel turpis nunc. Mi in nulla posuere sollicitudin. Ante metus dictum at tempor. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi. Faucibus et molestie ac feugiat sed lectus vestibulum mattis ullamcorper. Vulputate sapien nec sagittis aliquam malesuada."
+        }
+    ]
 }

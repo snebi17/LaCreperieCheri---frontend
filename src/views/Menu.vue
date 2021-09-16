@@ -1,48 +1,53 @@
 <template>
-	<v-container primary fill-height fluid class="pt-16">
-		<v-row justify="center">
+	<v-container secondary fill-height fluid>
+		<v-row>
 			<v-col cols="12">
 				<v-container>
-					<v-row>
+					<v-row class="v-row__fixed">
 						<v-col>
-							<v-tabs 
+							<v-tabs
 								background-color="transparent"
-								color="secondary"
+								color="primary"
 								:centered="isMobile"
 							>
-								<v-tab @click="toggle(0)">Sladko</v-tab>
-								<v-tab @click="toggle(1)">Slano</v-tab>
-								<v-tab @click="toggle(2)">Pijače</v-tab>
+								<v-tab @click="toggle('sweet')">
+									{{ $t('sweet') }}
+								</v-tab>
+								<v-tab @click="toggle('salty')">
+									{{ $t('salty') }}
+								</v-tab>
+								<v-tab @click="toggle('drinks')">
+									{{ $t('drinks') }}
+								</v-tab>
 							</v-tabs>
 						</v-col>
 					</v-row>
 					<v-row>
-						<v-col>
+						<v-col cols="12">
 							<v-expansion-panels
-								v-for="products in menu"
-								:key="products.id"
 								focusable
 								tile
 								flat
-								class="v-expansion-panels__custom"
+								class="v-expansion-panels__fixed"
 							>
 								<v-expansion-panel
-									v-for="(items, key) in products"
+									v-for="(items, key) in menu"
 									:key="key.id"
 									dense
 									depressed
 								>
-									<v-expansion-panel-header color="secondary">
+									<v-expansion-panel-header color="secondary" class="text-h6 primary--text">
 										{{ key }}
 									</v-expansion-panel-header>
-									<v-expansion-panel-content
-										v-for="item in items"
-										:key="item.id"
-										color="primary"
-									>
-										<p class="text-body-2 pt-5">
-											{{ item.name }}<span class="ml-2 font-weight-bold">{{ `${item.price.toFixed(2)} €`}}</span>
-										</p>
+									<v-expansion-panel-content color="primary" v-for="item in items" :key="item.id">
+										<v-row justify="center">
+											<v-col cols="4" class="text-center">
+												<p class="font-weight-medium">{{ item.name }}</p>
+											</v-col>
+											<v-col cols="4" class="text-center">
+												<span class="font-weight-bold">{{ `${item.price.toFixed(2)} €`}}</span>
+											</v-col>
+										</v-row>
 									</v-expansion-panel-content>
 								</v-expansion-panel>
 							</v-expansion-panels>
@@ -50,18 +55,18 @@
 					</v-row>
 				</v-container>
 			</v-col>
-			<v-col cols="12" md="6" class="v-cards__custom">
+			<!-- <v-col cols="12" md="6" class="v-cards__custom">
 				<v-container>
 					<v-row justify="center">
 						<v-col cols="12">
 							<v-hover>
-								<template 
+								<template
 									v-slot:default="{ hover }"
 								>
 									<v-card tile>
 										<v-img src="../assets/laPistacchio2.jpg"></v-img>
-										<v-overlay 
-											v-if="hover" 
+										<v-overlay
+											v-if="hover"
 											absolute
 											:opacity=".6"
 										>
@@ -88,13 +93,13 @@
 						</v-col>
 						<v-col cols="12">
 							<v-hover>
-								<template 
-									v-slot:default="{ hover }" 
+								<template
+									v-slot:default="{ hover }"
 								>
 									<v-card tile>
 										<v-img src="../assets/whiteJaffa3.jpg"></v-img>
-										<v-overlay 
-											v-if="hover" 
+										<v-overlay
+											v-if="hover"
 											absolute
 											:opacity=".6"
 										>
@@ -121,13 +126,13 @@
 					<v-row justify="center">
 						<v-col cols="12">
 							<v-hover>
-								<template 
-									v-slot:default="{ hover }" 
+								<template
+									v-slot:default="{ hover }"
 								>
 									<v-card tile>
 										<v-img src="../assets/american-pie.jpg"></v-img>
-										<v-overlay 
-											v-if="hover" 
+										<v-overlay
+											v-if="hover"
 											absolute
 											:opacity=".6"
 										>
@@ -154,14 +159,14 @@
 						</v-col>
 						<v-col cols="12">
 							<v-hover>
-								<template 
-									v-slot:default="{ hover }" 
+								<template
+									v-slot:default="{ hover }"
 								>
 									<v-card tile>
 										<v-img src="../assets/ruby1.jpg"></v-img>
-										<v-overlay 
-											v-if="hover" 
-											absolute 
+										<v-overlay
+											v-if="hover"
+											absolute
 											:opacity=".6"
 										>
 											<v-card-title class="text-h5 text-md-h3 font-weight-bold"
@@ -187,31 +192,6 @@
 					</v-row>
 				</v-container>
 			</v-col>-->
-		</v-row> 
-		<v-row>
-			<v-container fluid>
-				<v-row justify="center">
-					<v-col>
-						<v-card
-							flat
-							tile
-							color="success"
-							class="py-8"
-						>
-							<v-card-title class="text-h5 text-md-h3 justify-center primary--text">Oddaj naročilo </v-card-title>
-							<v-card-text class="text-center">
-								<v-btn 
-									depressed
-									tile
-									color="primary"
-									class="success--text"
-									:to="{ path: '/order' }"
-								>tukaj</v-btn>
-							</v-card-text>
-						</v-card>
-					</v-col>
-				</v-row>
-			</v-container>
 		</v-row>
 	</v-container>
 </template>
@@ -230,10 +210,10 @@ export default {
 	},
 	methods: {
 		getItems() {
-			axios.get("http://192.168.0.28:4000/menu")
-				.then(items => {
-					this.items = items.data;
-					this.menu = this.items[0];
+			axios.get(`http://192.168.0.26:4000/api/items`)
+				.then(res => {
+					this.items = res.data;
+					this.menu = this.items['sweet'];
 				})
 				.catch(errors => this.errors = errors);
 		},
@@ -257,11 +237,12 @@ export default {
 </script>
 
 <style scoped>
-	p {
+	p, span {
 		padding: 0;
 		margin: 0;
 	}
-	.v-expansion-panels__custom {
-		/* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+	.v-row__fixed {
+		position: fixed!important;
 	}
+	
 </style>

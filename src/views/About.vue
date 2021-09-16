@@ -1,5 +1,5 @@
 <template>
-	<v-container success fluid fill-height>
+	<v-container secondary fluid fill-height>
 		
 	</v-container>
 </template>
