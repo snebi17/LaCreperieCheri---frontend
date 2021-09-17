@@ -6,22 +6,13 @@ const state = () => ({
 });
 
 const getters = {
-  cartProducts: (state, getters, rootState) => {
-    return state.items.map(({ id, quantity }) => {
-      const product = rootState.products.all.find(
-        (product) => product.id === id
-      );
-      return {
-        name: product.specs.name,
-        price: product.specs.price,
-        quantity,
-      };
-    });
+  cartProducts: (state) => {
+    return state.items;
   },
 
   cartTotalPrice: (state, getters) => {
     return getters.cartProducts.reduce((total, product) => {
-      return total + product.price * product.quantity;
+      return total + product.total;
     }, 0);
   },
 };
@@ -46,42 +37,28 @@ const actions = {
 
   addProductToCart({ state, commit }, product) {
     commit("setCheckoutStatus", null);
-    // if (product.inventory > 0) {
-    //   const cartItem = state.items.find((item) => item.id === product.id);
-    //   if (!cartItem) {
-    //     commit("pushProductToCart", { id: product.id });
-    //   } else {
-    //     commit("incrementItemQuantity", cartItem);
-    //   }
-    //   // remove 1 item from stock
-    //   commit(
-    //     "products/decrementProductInventory",
-    //     { id: product.id },
-    //     { root: true }
-    //   );
-    // }
     const cartItem = state.items.find((item) => item.id === product.id);
     if (!cartItem) {
-      commit("pushProductToCart", { id: product.id });
-    } else {
-      commit("incrementItemQuantity", cartItem);
+      commit("pushProductToCart", { product: product });
     }
+    // else {
+    //   commit("incrementItemQuantity", cartItem);
+    // }
   },
 };
 
 // mutations
 const mutations = {
-  pushProductToCart(state, { id }) {
+  pushProductToCart(state, { product }) {
     state.items.push({
-      id,
-      quantity: 1,
+      product
     });
   },
 
-  incrementItemQuantity(state, { id }) {
-    const cartItem = state.items.find((item) => item.id === id);
-    cartItem.quantity++;
-  },
+  // incrementItemQuantity(state, { id }) {
+  //   const cartItem = state.items.find((item) => item.id === id);
+  //   cartItem.quantity++;
+  // },
 
   setCartItems(state, { items }) {
     state.items = items;

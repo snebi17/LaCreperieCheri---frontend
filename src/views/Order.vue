@@ -10,7 +10,7 @@
                     <v-stepper-items class="mt-16">
                         <v-stepper-content step="1">
                             <v-row justify="center">
-                                <v-col cols="12" class="d-flex justify-center">
+                                <v-col cols="12" md="4" class="d-flex justify-center">
                                     <v-btn
                                         color="primary"
                                         text
@@ -22,7 +22,7 @@
                                         {{ $t('sweet') }}
                                     </v-btn>
                                 </v-col>
-                                <v-col cols="12" class="d-flex justify-center">
+                                <v-col cols="12" md="4" class="d-flex justify-center">
                                     <v-btn
                                         color="primary"
                                         text
@@ -47,10 +47,10 @@
                                     <v-col
                                         :key="item.id"
                                         v-if="key.toLowerCase().includes('osnova')"
-                                        cols="2"
+                                        cols="12" md="2"
                                     >
                                         <v-card>
-                                            <v-img src="../assets/default.jpg"></v-img>
+                                            <!-- <v-img src="../assets/default.jpg"></v-img> -->
                                             <v-card-title>
                                                 {{ item.name }}
                                             </v-card-title>
@@ -59,7 +59,7 @@
                                             </v-card-subtitle>
                                             <v-card-actions>
                                                 <v-btn 
-                                                    @click="addItemToProduct(item)" 
+                                                    @click="addItemToProduct(item); nextStep();" 
                                                     class="rounded-pill"
                                                     color="primary"
                                                 >
@@ -71,13 +71,6 @@
                                     </v-col>
                                 </template>
                             </v-row>
-                            <v-btn
-                                class="mt-5 mb-1 rounded-pill"
-                                color="primary"
-                                @click="currentStep = 3"
-                            >
-                                Naprej
-                            </v-btn>
                         </v-stepper-content>
 
                         <v-stepper-content step="3">
@@ -90,10 +83,10 @@
                                     <v-col
                                         :key="item.id"
                                         v-if="key.toLowerCase().includes('namazi')"
-                                        cols="2"
+                                        cols="12" md="2"
                                     >
                                         <v-card>
-                                            <v-img src="../assets/default.jpg"></v-img>
+                                            <!-- <v-img src="../assets/default.jpg"></v-img> -->
                                             <v-card-title>
                                                 {{ item.name }}
                                             </v-card-title>
@@ -117,7 +110,7 @@
                             <v-btn
                                 class="mt-5 mb-1 rounded-pill"
                                 color="primary"
-                                @click="currentStep = 4"
+                                @click="nextStep()"
                             >
                                 Naprej
                             </v-btn>
@@ -133,10 +126,10 @@
                                     <v-col
                                         :key="item.id"
                                         v-if="key.toLowerCase().includes('čokoladice') || key.toLowerCase().includes('keksi') || key.toLowerCase().includes('sadje') || key.toLowerCase().includes('oreščki') || key.toLowerCase().includes('meso') || key.toLowerCase().includes('siri')"
-                                        cols="2"
+                                        cols="12" md="2"
                                     >
                                         <v-card>
-                                            <v-img src="../assets/default.jpg"></v-img>
+                                            <!-- <v-img src="../assets/default.jpg"></v-img> -->
                                             <v-card-title>
                                                 {{ item.name }}
                                             </v-card-title>
@@ -160,7 +153,7 @@
                             <v-btn
                                 class="mt-5 mb-1 rounded-pill"
                                 color="primary"
-                                @click="currentStep = 5"
+                                @click="nextStep()"
                             >
                                 Naprej
                             </v-btn>
@@ -176,10 +169,10 @@
                                     <v-col
                                         :key="item.id"
                                         v-if="key.toLowerCase().includes('prelivi')"
-                                        cols="2"
+                                        cols="12" md="2"
                                     >
                                         <v-card>
-                                            <v-img src="../assets/default.jpg"></v-img>
+                                            <!-- <v-img src="../assets/default.jpg"></v-img> -->
                                             <v-card-title>
                                                 {{ item.name }}
                                             </v-card-title>
@@ -212,23 +205,36 @@
                         </v-stepper-items>
                 </v-stepper>
             </v-col>
-            <v-col cols="12"
-                v-for="product in products"
-                :key="product.id"
-            >
-                <v-list 
-                    v-for="ingredient in product"
-                    :key="ingredient.id"
-                >
-                    <v-list-item>{{ ingredient }}</v-list-item>
-                </v-list>
+            <v-col cols="12" v-if="products.length > 0">
+                <v-container>
+                    <p class="font-weight-bold text-h5">Nakupovalni voziček</p>
+                    <v-row
+                        v-for="product in products"
+                        :key="product.id"
+                    >
+                        <v-col
+                            v-for="p in product"
+                            :key="p.id"
+                        >
+                            <v-list>
+                                <v-list-item v-for="i in p.items" :key="i.id">
+                                    {{ i.name }}   {{ i.price.toFixed(2) }} €
+                                </v-list-item>
+                                <v-divider></v-divider>
+                                <v-list-item>
+                                    <p class="font-weight-bold text-h5">Skupaj: {{ p.total.toFixed(2) }} €</p>
+                                </v-list-item>
+                            </v-list>
+                        </v-col>
+                    </v-row>
+                </v-container>
             </v-col>
         </v-row>
         <v-snackbar
             v-model="snackbar"
             timeout="2000"
         >
-            <p>Dodan izdelek <span class="font-weight-bold">{{ product.name }}</span></p>
+            <p>Dodana sestavina <span class="font-weight-bold">{{ ingredient.name }}</span></p>
         </v-snackbar>
     </v-container>
 </template>
@@ -243,14 +249,15 @@ export default {
         return {
             items: [],
             taste: [],
-            premium: false,
-            custom: false,
+            numberValue: 0,
             currentStep: 1,
             snackbar: false,
-            product: {}
+            ingredient: {},
+            id: 0
         };
     },
     created() {
+        localStorage.removeItem('product');
         this.getItems();
     },
     computed: {
@@ -271,47 +278,51 @@ export default {
 				.catch(errors => this.errors = errors);
 		},
         addItemToProduct (item) {
-            let product = [];
+            let product = {
+                items: [],
+                total: 0
+            };
             if (!localStorage.getItem('product')) {
-                product.push({
+                product.items.push({
                     type: item.type,
-                    specs: {
-                        name: item.name,
-                        price: item.price
-                    }
+                    name: item.name,
+                    price: item.price
                 });
+                product.total += item.price;
                 localStorage.setItem('product', JSON.stringify(product));
             } else {
                 product = JSON.parse(localStorage.getItem('product'));
-                product.push({
+                product.items.push({
                     type: item.type,
-                    specs: {
-                        name: item.name,
-                        price: item.price
-                    }
+                    name: item.name,
+                    price: item.price
                 });
+                product.total += item.price;
                 localStorage.setItem('product', JSON.stringify(product));
             }
-            this.product = item;
+            this.ingredient = item;
             this.snackbar = true;
         },
         addProductToCart () {
-            let product = JSON.parse(localStorage.getItem('product'));
+            let product = {
+                id: this.id,
+                items: JSON.parse(localStorage.getItem('product')).items,
+                total: JSON.parse(localStorage.getItem('product')).total
+            }
             this.$store.dispatch('cart/addProductToCart', product);
-            console.log(this.$store.getters['cart/cartProducts']);
             localStorage.clear();
+            this.id++;
+        },
+        makeOrder() {
+            let data = this.products;
+            axios.post('http://192.168.0.26:4000/api/orders', {
+                data
+            })
+                .then(() => console.log('Order has been made'))
+                .catch(err => console.log(err));
         },
         nextStep () {
-            // localStorage.setItem('currentStep', localStorage.getItem('currentStep'))
             this.currentStep++;
-        },
-        setPremium () {
-            this.premium = true;
-            this.nextStep();
-        },
-        setCustom () {
-            this.custom = true;
-            this.nextStep();
         },
         setTaste (key) {
             this.taste = this.items[key];
