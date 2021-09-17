@@ -12,8 +12,8 @@ const getters = {
         (product) => product.id === id
       );
       return {
-        title: product.title,
-        price: product.price,
+        name: product.specs.name,
+        price: product.specs.price,
         quantity,
       };
     });
@@ -46,19 +46,25 @@ const actions = {
 
   addProductToCart({ state, commit }, product) {
     commit("setCheckoutStatus", null);
-    if (product.inventory > 0) {
-      const cartItem = state.items.find((item) => item.id === product.id);
-      if (!cartItem) {
-        commit("pushProductToCart", { id: product.id });
-      } else {
-        commit("incrementItemQuantity", cartItem);
-      }
-      // remove 1 item from stock
-      commit(
-        "products/decrementProductInventory",
-        { id: product.id },
-        { root: true }
-      );
+    // if (product.inventory > 0) {
+    //   const cartItem = state.items.find((item) => item.id === product.id);
+    //   if (!cartItem) {
+    //     commit("pushProductToCart", { id: product.id });
+    //   } else {
+    //     commit("incrementItemQuantity", cartItem);
+    //   }
+    //   // remove 1 item from stock
+    //   commit(
+    //     "products/decrementProductInventory",
+    //     { id: product.id },
+    //     { root: true }
+    //   );
+    // }
+    const cartItem = state.items.find((item) => item.id === product.id);
+    if (!cartItem) {
+      commit("pushProductToCart", { id: product.id });
+    } else {
+      commit("incrementItemQuantity", cartItem);
     }
   },
 };

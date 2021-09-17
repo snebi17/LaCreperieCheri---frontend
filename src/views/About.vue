@@ -1,6 +1,10 @@
 <template>
 	<v-container secondary fluid fill-height>
-		
+		<v-row>
+			<v-col>
+				
+			</v-col>
+		</v-row>
 	</v-container>
 </template>
 

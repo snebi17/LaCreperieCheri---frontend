@@ -15,13 +15,13 @@
 				>
 					{{ $t('nav.menu') }}
 				</v-list-item>
-				<v-list-item 
+				<v-list-item
 					:to="{ name: 'Gallery', params: $i18n.locale }"
 					class="success--text text-uppercase font-weight-bold"
 				>
 					{{ $t('nav.gallery') }}
 				</v-list-item>
-				<v-list-item 
+				<v-list-item
 					:to="{ name: 'About', params: $i18n.locale }"
 					class="success--text text-uppercase font-weight-bold"
 				>
@@ -41,17 +41,17 @@
 			</v-row>
 		</v-navigation-drawer>
 		<v-app-bar 
-			flat 
-			:color="[this.$route === '/' ? primary : transparent]"
+			flat
+			color="primary"
 			fixed
 			app
 			class="mb-16"
 		>
 			<v-app-bar-nav-icon 
-				x-large 
+				x-large
 				@click="drawer = true"
 				icon
-				:color="[this.$router === '/' ? primary : transparent]"
+				color="secondary"
 			></v-app-bar-nav-icon>
 			<v-spacer></v-spacer>
 			<!-- <v-menu offset-y rounded="b-xl">
@@ -154,12 +154,10 @@ export default {
 	name: 'App',
 	data() {
 		return {
+			path: '',
 			drawer: false,
 			publicPath: process.env.BASE_URL
 		}
-	},
-	created() {
-		console.log(this.$route);
 	},
 	methods: {
 		open(url) {
@@ -196,26 +194,18 @@ export default {
 	.slide-leave-active {
 		transition: all 0.75s ease-out;
 	}
-
-
 	.slide-enter-to {
 		position: absolute;
 		right: 0;
 	}
-
-
 	.slide-enter-from {
 		position: absolute;
 		right: -100%;
 	}
-
-
 	.slide-leave-to {
 		position: absolute;
 		left: -100%;
 	}
-
-
 	.slide-leave-from {
 		position: absolute;
 		left: 0;

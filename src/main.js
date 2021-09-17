@@ -4,7 +4,7 @@ import VueRouter from 'vue-router';
 
 import router from './routes/router';
 import vuetify from './plugins/vuetify';
-import i18n from './i18n';
+import i18n from './internationalization/i18n';
 import store from './store';
 
 import '../public/app.css';
