@@ -10,13 +10,13 @@
 								color="primary"
 								:centered="isMobile"
 							>
-								<v-tab @click="toggle('sweet')">
+								<v-tab @click="toggle(0)">
 									{{ $t('sweet') }}
 								</v-tab>
-								<v-tab @click="toggle('salty')">
+								<v-tab @click="toggle(2)">
 									{{ $t('salty') }}
 								</v-tab>
-								<v-tab @click="toggle('drinks')">
+								<v-tab @click="toggle(1)">
 									{{ $t('drinks') }}
 								</v-tab>
 							</v-tabs>
@@ -25,27 +25,36 @@
 					<v-row>
 						<v-col cols="12">
 							<v-expansion-panels
+								v-for="groups in menu"	
+								:key="groups.id"
 								focusable
 								tile
 								flat
 								class="v-expansion-panels__fixed"
 							>
 								<v-expansion-panel
-									v-for="(items, key) in menu"
+									v-for="(items, key) in groups"
 									:key="key.id"
 									dense
 									depressed
 								>
-									<v-expansion-panel-header color="secondary" class="text-h6 primary--text">
+									<v-expansion-panel-header 
+										color="secondary" 
+										class="text-h6 primary--text"
+									>
 										{{ key }}
 									</v-expansion-panel-header>
-									<v-expansion-panel-content color="primary" v-for="item in items" :key="item.id">
+									<v-expansion-panel-content 
+										v-for="item in items" 
+										:key="item.id"
+										color="primary" 
+									>
 										<v-row justify="center">
 											<v-col cols="4" class="text-center">
 												<p class="font-weight-medium">{{ item.name }}</p>
 											</v-col>
 											<v-col cols="4" class="text-center">
-												<span class="font-weight-bold">{{ `${item.price.toFixed(2)} €`}}</span>
+												<span class="font-weight-bold">{{ item.price.toFixed(2) + ' €'}}</span>
 											</v-col>
 										</v-row>
 									</v-expansion-panel-content>
@@ -53,6 +62,29 @@
 							</v-expansion-panels>
 						</v-col>
 					</v-row>
+					<!-- <v-row
+						class="mt-16"
+						v-for="groups in data"
+						:key="groups.id"
+					>
+						<v-col 
+							v-for="group in groups['items']"
+							:key="group.id"
+						>
+							<v-list 
+								v-for="(items, key) in group"
+								:key="key.id"
+							>
+								{{ key }}
+								<v-list-item
+									v-for="item in items"
+									:key="item.id"
+								>
+									<p>{{ item.name }} <span>{{ item.price }}</span></p>
+								</v-list-item>
+							</v-list>
+						</v-col>
+					</v-row> -->
 				</v-container>
 			</v-col>
 			<!-- <v-col cols="12" md="6" class="v-cards__custom">
@@ -203,23 +235,23 @@ export default {
 	name: "Menu",
 	data() {
 		return {
-			items: [],
+			data: [],
 			menu: [],
 			mobile: false
 		};
 	},
 	methods: {
 		getItems() {
-			axios.get(`http://192.168.0.26:4000/api/items`)
+			axios.get(`http://localhost:4000/api/items?lang=${this.$i18n.locale}`)
 				.then(res => {
-					this.items = res.data;
-					this.menu = this.items['sweet'];
+					this.data = res.data.items;
+					this.menu = this.data[0].items;
 				})
 				.catch(errors => this.errors = errors);
 		},
 		toggle(index) {
 			this.menu = [];
-			this.menu = this.items[index];
+			this.menu = this.data[index].items;
 		}
 	},
 	computed: {

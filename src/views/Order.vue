@@ -271,7 +271,7 @@ export default {
     },
     methods: {
         getItems () {
-			axios.get('http://192.168.0.26:4000/api/items')
+			axios.get('http://localhost:4000/api/items')
 				.then(items => {
 					this.items = items.data;
 				})
