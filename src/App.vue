@@ -10,25 +10,25 @@
 		>
 			<v-list>
 				<v-list-item 
-					:to="{ name: 'Menu', params: $i18n.locale }"
+					:to="{ name: 'Menu', params: { lang:  $i18n.locale  } }"
 					class="success--text text-uppercase font-weight-bold"
 				>
 					{{ $t('nav.menu') }}
 				</v-list-item>
 				<v-list-item
-					:to="{ name: 'Gallery', params: $i18n.locale }"
+					:to="{ name: 'Gallery', params: { lang:  $i18n.locale  } }"
 					class="success--text text-uppercase font-weight-bold"
 				>
 					{{ $t('nav.gallery') }}
 				</v-list-item>
 				<v-list-item
-					:to="{ name: 'About', params: $i18n.locale }"
+					:to="{ name: 'About', params: { lang:  $i18n.locale  } }"
 					class="success--text text-uppercase font-weight-bold"
 				>
 					{{ $t('nav.about') }}
 				</v-list-item>
 				<v-list-item 
-					:to="{ name: 'Contact', params: $i18n.locale }"
+					:to="{ name: 'Contact', params: { lang:  $i18n.locale  } }"
 					class="success--text text-uppercase font-weight-bold"
 				>
 					{{ $t('nav.schedule_contact') }}
@@ -42,7 +42,7 @@
 		</v-navigation-drawer>
 		<v-app-bar 
 			flat
-			color="primary"
+			:color="background"
 			fixed
 			app
 			class="mb-16"
@@ -51,7 +51,7 @@
 				x-large
 				@click="drawer = true"
 				icon
-				color="secondary"
+				:color="color"
 			></v-app-bar-nav-icon>
 			<v-spacer></v-spacer>
 			<!-- <v-menu offset-y rounded="b-xl">
@@ -96,34 +96,34 @@
 				</v-list>
 			</v-menu> -->
 			<v-btn
-				text
-				color="secondary"
-				:to="{ name: 'Order', params: $i18n.locale }"
 				class="rounded-pill mr-1 v-btn__border"
+				:color="color"
+				text
+				:to="{ name: 'Order', params: { lang:  $i18n.locale  } }"
 			>
 				{{ $t('nav.order') }}
 			</v-btn>
 			<v-btn 
 				x-large 
+				:color="color"
 				icon
 				@click="open('https://www.facebook.com/LaCreperieCheriPalacinke/')"
-				color="secondary"
 			>
 				<i class="fa fa-facebook fa-lg"></i>
 			</v-btn>
 			<v-btn 
 				x-large
+				:color="color"
 				icon
 				@click="open('https://www.instagram.com/lacreperie_cheri/')"
-				color="secondary"
 			>
 				<i class="fa fa-instagram fa-lg"></i>
 			</v-btn>
 			<v-btn 
 				x-large 
+				:color="color"
 				icon
 				@click="open('https://www.tripadvisor.com/Restaurant_Review-g274873-d23450735-Reviews-La_Creperie_Cheri-Ljubljana_Upper_Carniola_Region.html')"
-				color="secondary"
 			>
 				<i class="fa fa-tripadvisor fa-lg"></i>
 			</v-btn>
@@ -156,8 +156,14 @@ export default {
 		return {
 			path: '',
 			drawer: false,
-			publicPath: process.env.BASE_URL
+			publicPath: process.env.BASE_URL,
+			background: '',
+			color: ''
 		}
+	},
+	created() {
+		this.background = this.$route.fullPath === '/' ? 'transparent' : 'primary';
+		this.color = this.$route.fullPath === '/' ? 'primary' : 'secondary';
 	},
 	methods: {
 		open(url) {
@@ -184,7 +190,7 @@ export default {
 		height: 20px;
 	}
 	.v-btn__border {
-		border: 2px solid #f2efdb;
+		border: 2px solid #fda47e;
 	}
 	.v-row__position {
 		position: absolute!important;

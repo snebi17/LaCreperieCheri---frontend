@@ -13,10 +13,10 @@
 								<v-tab @click="toggle(0)">
 									{{ $t('sweet') }}
 								</v-tab>
-								<v-tab @click="toggle(2)">
+								<v-tab @click="toggle(1)">
 									{{ $t('salty') }}
 								</v-tab>
-								<v-tab @click="toggle(1)">
+								<v-tab @click="toggle(2)">
 									{{ $t('drinks') }}
 								</v-tab>
 							</v-tabs>
@@ -24,17 +24,15 @@
 					</v-row>
 					<v-row>
 						<v-col cols="12">
-							<v-expansion-panels
-								v-for="groups in menu"	
-								:key="groups.id"
+							<v-expansion-panels	
 								focusable
 								tile
 								flat
 								class="v-expansion-panels__fixed"
 							>
 								<v-expansion-panel
-									v-for="(items, key) in groups"
-									:key="key.id"
+									v-for="groups in menu"
+									:key="groups.id"
 									dense
 									depressed
 								>
@@ -42,13 +40,13 @@
 										color="secondary" 
 										class="text-h6 primary--text"
 									>
-										{{ key }}
+										{{ groups.type }}
 									</v-expansion-panel-header>
 									<v-expansion-panel-content 
-										v-for="item in items" 
+										v-for="item in groups.products" 
 										:key="item.id"
 										color="primary" 
-									>
+										>
 										<v-row justify="center">
 											<v-col cols="4" class="text-center">
 												<p class="font-weight-medium">{{ item.name }}</p>

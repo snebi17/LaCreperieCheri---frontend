@@ -6,7 +6,7 @@
             class="v-row__opacity"
         >
             <v-col class="text-center" cols="12">
-                <p class="text-h4 text-sm-h3 text-md-h2 text-lg-h1 font-weight-bold text-border secondary--text">La Crêperie Chéri</p>
+                <p class="text-h4 text-sm-h3 text-md-h2 text-lg-h1 font-weight-bold primary--text">La Crêperie Chéri</p>
             </v-col>
         </v-row>
     </v-container>
@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style scoped>
-    .text-border {
+    /* .text-border {
         -webkit-text-stroke: .1rem #fda47e;
-    }
+    } */
 </style>
