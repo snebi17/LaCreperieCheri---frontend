@@ -1,22 +1,31 @@
 <template>
-	<v-container secondary fill-height fluid>
+	<v-container secondary fill-height fluid class="d-flex align-start pt-16">
 		<v-row>
 			<v-col cols="12">
 				<v-container>
-					<v-row class="v-row__fixed">
+					<v-row>
 						<v-col>
 							<v-tabs
 								background-color="transparent"
 								color="primary"
 								:centered="isMobile"
 							>
-								<v-tab @click="toggle(0)">
+								<v-tab 
+									@click="toggle(0)"
+									class="primary--text"
+								>
 									{{ $t('sweet') }}
 								</v-tab>
-								<v-tab @click="toggle(1)">
+								<v-tab
+									@click="toggle(1)"
+									class="primary--text"
+								>
 									{{ $t('salty') }}
 								</v-tab>
-								<v-tab @click="toggle(2)">
+								<v-tab 
+									@click="toggle(2)"
+									class="primary--text"
+								>
 									{{ $t('drinks') }}
 								</v-tab>
 							</v-tabs>
@@ -28,7 +37,6 @@
 								focusable
 								tile
 								flat
-								class="v-expansion-panels__fixed"
 							>
 								<v-expansion-panel
 									v-for="groups in menu"
@@ -37,52 +45,31 @@
 									depressed
 								>
 									<v-expansion-panel-header 
-										color="secondary" 
-										class="text-h6 primary--text"
+										color="secondary"
+										class="success--text"
 									>
 										{{ groups.type }}
 									</v-expansion-panel-header>
 									<v-expansion-panel-content 
-										v-for="item in groups.products" 
-										:key="item.id"
-										color="primary" 
+										color="success"
+									>
+										<v-list
+											v-for="item in groups.products" 
+											:key="item.id"
+											color="transparent"
 										>
-										<v-row justify="center">
-											<v-col cols="4" class="text-center">
-												<p class="font-weight-medium">{{ item.name }}</p>
-											</v-col>
-											<v-col cols="4" class="text-center">
-												<span class="font-weight-bold">{{ item.price.toFixed(2) + ' €'}}</span>
-											</v-col>
-										</v-row>
+											<v-list-item>
+												<v-row justify="space-between" class="secondary--text">
+													<p>{{ item.name }}</p>
+													<p>{{ item.price.toFixed(2) + ' €' }}</p>
+												</v-row>
+											</v-list-item>
+										</v-list>
 									</v-expansion-panel-content>
 								</v-expansion-panel>
 							</v-expansion-panels>
 						</v-col>
 					</v-row>
-					<!-- <v-row
-						class="mt-16"
-						v-for="groups in data"
-						:key="groups.id"
-					>
-						<v-col 
-							v-for="group in groups['items']"
-							:key="group.id"
-						>
-							<v-list 
-								v-for="(items, key) in group"
-								:key="key.id"
-							>
-								{{ key }}
-								<v-list-item
-									v-for="item in items"
-									:key="item.id"
-								>
-									<p>{{ item.name }} <span>{{ item.price }}</span></p>
-								</v-list-item>
-							</v-list>
-						</v-col>
-					</v-row> -->
 				</v-container>
 			</v-col>
 			<!-- <v-col cols="12" md="6" class="v-cards__custom">
@@ -271,8 +258,4 @@ export default {
 		padding: 0;
 		margin: 0;
 	}
-	.v-row__fixed {
-		position: fixed!important;
-	}
-	
 </style>
