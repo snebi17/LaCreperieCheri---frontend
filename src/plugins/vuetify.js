@@ -12,7 +12,11 @@ export default new Vuetify({
 				secondary: "#f2efdb",
 				accent: "#c78283",
 				success: "#3d3737",
+				// primary: "#e99ea2",
+				// secondary: "#3b4664",
+				// accent: "#a6a6a6",
+				// success: "#f2d0d0",
 			},
 		},
-	}
+	},
 });

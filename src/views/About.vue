@@ -1,5 +1,5 @@
 <template>
-	<v-container secondary fluid fill-height>
+	<v-container fluid fill-height class="v-container__background">
 		<v-row>
 			<v-col>
 				
@@ -15,5 +15,8 @@ export default {
 </script>
 
 <style>
-
+	.v-container__background {
+        background-image: url('../assets/background1.png')!important;
+        background-repeat: repeat;
+    }
 </style>

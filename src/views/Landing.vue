@@ -1,5 +1,5 @@
 <template>
-    <v-container secondary fluid fill-height>
+    <v-container fluid fill-height class="v-container__background">
         <v-row 
             align="center" 
             justify="center"
@@ -32,7 +32,8 @@ export default {
 </script>
 
 <style scoped>
-    /* .text-border {
-        -webkit-text-stroke: .1rem #fda47e;
-    } */
+    .v-container__background {
+        background-image: url('../assets/background1.png')!important;
+        background-repeat: repeat;
+    }
 </style>

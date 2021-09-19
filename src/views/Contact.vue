@@ -1,5 +1,5 @@
 <template>
-	<v-container secondary fluid id="contact" class="py-16">
+	<v-container fluid fill-height class="v-container__background">
 		<v-row align="center" justify="center">
 			<v-col class="col-12 col-md-4">
 				<v-card flat color="transparent">
@@ -85,20 +85,24 @@ export default {
 </script>
 
 <style scoped>
-p {
-	padding: 0;
-	margin: 0;
-}
-p > span {
-	font-size: 10px;
-	font-weight: 300;
-	position: relative;
-	top: -5px;
-}
-.border-right {
-	border-right: 1px solid black;
-}
-.inline {
-	display: flex;
-}
+	p {
+		padding: 0;
+		margin: 0;
+	}
+	p > span {
+		font-size: 10px;
+		font-weight: 300;
+		position: relative;
+		top: -5px;
+	}
+	.border-right {
+		border-right: 1px solid black;
+	}
+	.inline {
+		display: flex;
+	}
+	.v-container__background {
+        background-image: url('../assets/background1.png')!important;
+        background-repeat: repeat;
+    }
 </style>

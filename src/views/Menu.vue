@@ -1,5 +1,5 @@
 <template>
-	<v-container secondary fill-height fluid class="d-flex align-start pt-16">
+	<v-container secondary fill-height fluid class="d-flex align-start pt-16 v-container__background">
 		<v-row>
 			<v-col cols="12">
 				<v-container>
@@ -43,11 +43,9 @@
 									:key="groups.id"
 									dense
 									depressed
+									class="v-expansion-panel__transparent"
 								>
-									<v-expansion-panel-header 
-										color="secondary"
-										class="success--text"
-									>
+									<v-expansion-panel-header class="success--text">
 										{{ groups.type }}
 									</v-expansion-panel-header>
 									<v-expansion-panel-content 
@@ -227,7 +225,7 @@ export default {
 	},
 	methods: {
 		getItems() {
-			axios.get(`http://localhost:4000/api/items?lang=${this.$i18n.locale}`)
+			axios.get(`http://192.168.206.28:4000/api/items?lang=${this.$i18n.locale}`)
 				.then(res => {
 					this.data = res.data.data;
 					this.menu = this.data[0];
@@ -257,5 +255,12 @@ export default {
 	p, span {
 		padding: 0;
 		margin: 0;
+	}
+	.v-container__background {
+        background-image: url('../assets/background1.png')!important;
+        background-repeat: repeat;
+    }
+	.v-expansion-panel__transparent {
+		background-color: transparent!important;
 	}
 </style>

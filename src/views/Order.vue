@@ -1,5 +1,5 @@
 <template>
-    <v-container secondary fill-height fluid>
+    <v-container fill-height fluid class="v-container__background">
         <v-row>
             <v-col cols="12">
                 <v-stepper 
@@ -16,7 +16,8 @@
                                         text
                                         height="6rem" 
                                         width="15rem"
-                                        class="text-h5 text-md-h4 rounded-pill font-weight-bold primary--text v-btn__border"
+                                        class="text-h5 text-md-h4 rounded-pill font-weight-bold primary--text"
+                                        outlined
                                         @click="setTaste(0)" 
                                     >
                                         {{ $t('sweet') }}
@@ -28,7 +29,8 @@
                                         text
                                         height="6rem" 
                                         width="15rem"
-                                        class="text-h5 text-md-h4 rounded-pill font-weight-bold primary--text v-btn__border"
+                                        class="text-h5 text-md-h4 rounded-pill font-weight-bold primary--text"
+                                        outlined
                                         @click="setTaste(1)" 
                                     >
                                         {{ $t('salty') }}
@@ -36,65 +38,59 @@
                                 </v-col>
                             </v-row>
                         </v-stepper-content>
-                        <v-stepper-content step="2">
+                        <v-stepper-content step="2" class="mt-16">
                             <h1>Izberite osnovo Vaše palačinke</h1>
                             <v-row
-                                v-for="item in items"
+                                v-for="item in steps.base"
                                 :key="item.id"
                             >
-                                <template v-if="item.type.toLowerCase().includes('osnova') || item.type.toLowerCase().includes('base')">
-                                    
-                                    <v-col
-                                        v-for="product in item.products"
-                                        :key="product.id"
-                                        cols="12" md="3"
+                                <v-col
+                                    v-for="product in item.products"
+                                    :key="product.id"
+                                    cols="12" md="3"
+                                >
+                                      <v-card
+                                        @click="addItemToProduct(product); nextStep()"
+                                        class="d-flex flex-column align-center rounded-pill"
+                                        flat
+                                        outlined
                                     >
-                                        <v-card
-                                            @click="addItemToProduct(product); nextStep()"
-                                            ripple
-                                            class="d-flex flex-column align-center border-pill"
-                                            flat
-                                        >
-                                            <v-card-title class="text-body-1">
-                                                {{ product.name }}
-                                            </v-card-title>
-                                            <v-card-subtitle>
-                                                {{ product.price.toFixed(2) + ' €' }}
-                                            </v-card-subtitle>
-                                        </v-card>
-                                    </v-col>
-                                </template>
+                                        <v-card-title class="text-body-1">
+                                            {{ product.name }}
+                                        </v-card-title>
+                                        <v-card-subtitle>
+                                            {{ product.price.toFixed(2) + ' €' }}
+                                        </v-card-subtitle>
+                                    </v-card>
+                                </v-col>
                             </v-row>
                         </v-stepper-content>
 
-                        <v-stepper-content step="3">
+                        <v-stepper-content step="3" class="mt-16">
                             <h1>Izberite željen namaz</h1>
                             <v-row
-                                v-for="item in items"
+                                v-for="item in steps.spreads"
                                 :key="item.id"
                             >
-                                <template v-if="item.type.toLowerCase().includes('namazi') || item.type.toLowerCase().includes('spreads')">
-                                    {{ item.type }}
-                                    <v-col
-                                        v-for="product in item.products"
-                                        :key="product.id"
-                                        cols="12" md="3"
+                                <v-col
+                                    v-for="product in item.products"
+                                    :key="product.id"
+                                    cols="12" md="3"
+                                >
+                                    <v-card
+                                        @click="addItemToProduct(product)"
+                                        class="d-flex flex-column align-center rounded-pill"
+                                        flat
+                                        outlined
                                     >
-                                        <v-card
-                                            @click="addItemToProduct(product)"
-                                            ripple
-                                            class="d-flex flex-column align-center border-pill"
-                                            flat
-                                        >
-                                            <v-card-title class="text-body-1">
-                                                {{ product.name }}
-                                            </v-card-title>
-                                            <v-card-subtitle>
-                                                {{ product.price.toFixed(2) + ' €' }}
-                                            </v-card-subtitle>
-                                        </v-card>
-                                    </v-col>
-                                </template>
+                                        <v-card-title class="text-body-1">
+                                            {{ product.name }}
+                                        </v-card-title>
+                                        <v-card-subtitle>
+                                            {{ product.price.toFixed(2) + ' €' }}
+                                        </v-card-subtitle>
+                                    </v-card>
+                                </v-col>
                             </v-row>
                             <v-btn
                                 class="mt-5 mb-1 rounded-pill"
@@ -105,79 +101,31 @@
                             </v-btn>
                         </v-stepper-content>
 
-                        <v-stepper-content step="4">
+                        <v-stepper-content step="4" class="mt-16">
                             <h1>Izberite željeno polnilo</h1>
-                            <!--<v-row
-                                v-for="(items, key) in taste"
-                                :key="items.id"
-                            >
-                                <template v-for="item in items">
-                                    <h1 :key="item.id"> {{ key }}</h1>
-                                    <v-col
-                                        :key="item.id"
-                                        v-if="key.toLowerCase().includes('čokoladice') || key.toLowerCase().includes('keksi') || key.toLowerCase().includes('sadje') || key.toLowerCase().includes('oreščki') || key.toLowerCase().includes('meso') || key.toLowerCase().includes('siri')"
-                                        cols="12" md="2"
-                                    >
-                                        <v-card>
-                                            <v-img src="../assets/default.jpg"></v-img>
-                                            <v-card-title>
-                                                {{ item.name }}
-                                            </v-card-title>
-                                            <v-card-subtitle>
-                                                {{ `${item.price.toFixed(2)} €` }}
-                                            </v-card-subtitle>
-                                            <v-card-actions>
-                                                <v-btn 
-                                                    @click="addItemToProduct(item)" 
-                                                    class="rounded-pill"
-                                                    color="primary"
-                                                >
-                                                    Dodaj
-                                                    <v-icon>mdi-plus</v-icon>
-                                                </v-btn>
-                                            </v-card-actions>
-                                        </v-card>
-                                    </v-col>
-                                </template>
-                            </v-row> -->
                             <v-row
-                                v-for="item in items"
+                                v-for="item in steps.fillings"
                                 :key="item.id"
                             >
-                                <template 
-                                    v-if="item.type.toLowerCase().includes('čokoladice') || 
-                                        item.type.toLowerCase().includes('keksi') || 
-                                        item.type.toLowerCase().includes('sadje') || 
-                                        item.type.toLowerCase().includes('oreščki') || 
-                                        item.type.toLowerCase().includes('meso') || 
-                                        item.type.toLowerCase().includes('siri') ||
-                                        item.type.toLowerCase().includes('chocolates') ||
-                                        item.type.toLowerCase().includes('biscuits') ||
-                                        item.type.toLowerCase().includes('fruit') ||
-                                        item.type.toLowerCase().includes('nuts') ||
-                                        item.type.toLowerCase().includes('meat') ||
-                                        item.type.toLowerCase().includes('cheeses')"
+                                <v-col
+                                    v-for="product in item.products"
+                                    :key="product.id"
+                                    cols="12" md="3"
+                                >
+                                    <v-card
+                                        @click="addItemToProduct(product)"
+                                        class="d-flex flex-column align-center rounded-pill"
+                                        flat
+                                        outlined
                                     >
-                                    <v-col
-                                        v-for="product in item.products"
-                                        :key="product.id"
-                                        cols="12" md="3"
-                                    >
-                                        <v-card
-                                            @click="addItemToProduct(product)"
-                                            ripple
-                                            class="d-flex flex-column align-center border-pill"
-                                            flat
-                                        >
-                                            <v-card-title class="text-body-1">
-                                                {{ product.name }}
-                                            </v-card-title>
-                                            <v-card-subtitle>
-                                                {{ product.price.toFixed(2) + ' €' }}
-                                            </v-card-subtitle>
-                                        </v-card>
-                                    </v-col>
-                                </template>
+                                        <v-card-title class="text-body-1">
+                                            {{ product.name }}
+                                        </v-card-title>
+                                        <v-card-subtitle>
+                                            {{ product.price.toFixed(2) + ' €' }}
+                                        </v-card-subtitle>
+                                    </v-card>
+                                </v-col>
                             </v-row>
                             <v-btn
                                 class="mt-5 mb-1 rounded-pill"
@@ -188,41 +136,32 @@
                             </v-btn>
                         </v-stepper-content>
 
-                        <v-stepper-content step="5">
+                        <v-stepper-content step="5" class="mt-16">
                             <h1>Izberite željen preliv</h1>
-                            <!--<v-row
-                                v-for="(items, key) in taste"
-                                :key="items.id"
+                            <v-row
+                                v-for="item in steps.toppings"
+                                :key="item.id"
                             >
-                                <template v-for="item in items">
-                                    <h1 :key="item.id"> {{ key }}</h1>
-                                    <v-col
-                                        :key="item.id"
-                                        v-if="key.toLowerCase().includes('prelivi')"
-                                        cols="12" md="2"
+                                <v-col
+                                    v-for="product in item.products"
+                                    :key="product.id"
+                                    cols="12" md="3"
+                                >
+                                    <v-card
+                                        @click="addItemToProduct(product)"
+                                        class="d-flex flex-column align-center rounded-pill"
+                                        flat
+                                        outlined
                                     >
-                                        <v-card>
-                                            <v-img sr   c="../assets/default.jpg"></v-img>
-                                            <v-card-title>
-                                                {{ item.name }}
-                                            </v-card-title>
-                                            <v-card-subtitle>
-                                                {{ `${item.price.toFixed(2)} €` }}
-                                            </v-card-subtitle>
-                                            <v-card-actions>
-                                                <v-btn 
-                                                    @click="addItemToProduct(item)" 
-                                                    class="rounded-pill"
-                                                    color="primary"
-                                                >
-                                                    Dodaj
-                                                    <v-icon>mdi-plus</v-icon>
-                                                </v-btn>
-                                            </v-card-actions>
-                                        </v-card>
-                                    </v-col> 
-                                </template>
-                            </v-row> -->
+                                        <v-card-title class="text-body-1">
+                                            {{ product.name }}
+                                        </v-card-title>
+                                        <v-card-subtitle>
+                                            {{ product.price.toFixed(2) + ' €' }}
+                                        </v-card-subtitle>
+                                    </v-card>
+                                </v-col>
+                            </v-row>
                             <v-btn
                                 class="mt-5 mb-1 rounded-pill"
                                 color="primary"
@@ -243,16 +182,16 @@
                         :key="product.id"
                     >
                         <v-col
-                            v-for="p in product"
-                            :key="p.id"
+                            v-for="item in product"
+                            :key="item.id"
                         >
                             <v-list>
-                                <v-list-item v-for="i in p.items" :key="i.id">
+                                <v-list-item v-for="i in item.items" :key="i.id">
                                     {{ i.name }}   {{ i.price.toFixed(2) }} €
                                 </v-list-item>
                                 <v-divider></v-divider>
                                 <v-list-item>
-                                    <p class="font-weight-bold text-h5">Skupaj: {{ p.total.toFixed(2) }} €</p>
+                                    <p class="font-weight-bold text-h5">Skupaj: {{ i.total.toFixed(2) }} €</p>
                                 </v-list-item>
                             </v-list>
                         </v-col>
@@ -279,6 +218,12 @@ export default {
         return {
             data: [],
             items: [],
+            steps: {
+                base: [],
+                spreads: [],
+                fillings: [],
+                toppings: []
+            },
             numberValue: 0,
             currentStep: 1,
             snackbar: false,
@@ -355,7 +300,23 @@ export default {
             this.currentStep++;
         },
         setTaste (index) {
-            this.items = this.data[index];
+            let items = this.data[index];
+            if (!index) {
+                this.steps.base.push(items[0]);
+                this.steps.spreads.push(items[1]);
+                this.steps.spreads.push(items[2]);
+                this.steps.fillings.push(items[3]);
+                this.steps.fillings.push(items[4]);
+                this.steps.fillings.push(items[5]);
+                this.steps.fillings.push(items[6]);
+                this.steps.toppings.push(items[7]);
+            } else {
+                this.steps.base.push(items[0]);
+                this.steps.spreads.push(items[1]);
+                this.steps.fillings.push(items[2]);
+                this.steps.fillings.push(items[3]);
+                this.steps.toppings.push(items[4]);
+            }
             this.nextStep();
         }
   },
@@ -367,16 +328,17 @@ export default {
         margin: 0;
         padding: 0;
     }
-    .v-btn__border {
-		border: 5px solid #fda47e;
-	}
     .v-stepper__color {
-        background-color: #f2efdb!important;
+        background-color: transparent!important;
     }
     .v-stepper-header__shadow {
         box-shadow: none!important;
     }
     .border {
         border: 1px solid black;
+    }
+    .v-container__background {
+        background-image: url('../assets/background1.png')!important;
+        background-repeat: repeat;
     }
 </style>
