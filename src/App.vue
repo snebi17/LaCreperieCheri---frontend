@@ -42,7 +42,7 @@
 		</v-navigation-drawer>
 		<v-app-bar 
 			flat
-			:color="background"
+			color="primary"
 			fixed
 			app
 			class="mb-16"
@@ -51,61 +51,21 @@
 				x-large
 				@click="drawer = true"
 				icon
-				:color="color"
+				color="secondary"
 			></v-app-bar-nav-icon>
 			<v-spacer></v-spacer>
-			<!-- <v-menu offset-y rounded="b-xl">
-				<template v-slot:activator="{ attrs, on }">
-					<v-btn
-						v-bind="attrs"
-						v-on="on"
-						text
-						class="rounded-pill"
-					>
-						{{ $i18n.locale }}
-						<v-avatar class="ml-2" size="30">
-							<v-img :src="`${publicPath}flag_${$i18n.locale}.png`"></v-img>
-						</v-avatar>
-					</v-btn>
-				</template>
-				<v-list>
-					<v-list-item>
-						<v-btn
-							text
-							@click="setLocale('si')"
-							class="rounded-pill"
-						>
-							{{ $t('slovene') }}
-							<v-avatar class="ml-2" size="30">
-								<v-img  :src="`${publicPath}flag_si.png`"></v-img>
-							</v-avatar>
-						</v-btn>
-					</v-list-item>
-					<v-list-item>
-						<v-btn
-							text
-							@click="setLocale('en')"
-							class="rounded-pill"
-						>
-							{{ $t('english') }}
-							<v-avatar class="ml-2" size="30">
-								<v-img :src="`${publicPath}flag_en.png`"></v-img>
-							</v-avatar>
-						</v-btn>
-					</v-list-item>
-				</v-list>
-			</v-menu> -->
 			<v-btn
-				class="rounded-pill mr-1 v-btn__border"
-				:color="color"
+				class="rounded-pill mr-1"
+				outlined
+				color="secondary"
 				text
 				:to="{ name: 'Order', params: { lang:  $i18n.locale  } }"
 			>
 				{{ $t('nav.order') }}
 			</v-btn>
 			<v-btn 
-				x-large 
-				:color="color"
+				x-large
+				color="secondary"
 				icon
 				@click="open('https://www.facebook.com/LaCreperieCheriPalacinke/')"
 			>
@@ -113,7 +73,7 @@
 			</v-btn>
 			<v-btn 
 				x-large
-				:color="color"
+				color="secondary"
 				icon
 				@click="open('https://www.instagram.com/lacreperie_cheri/')"
 			>
@@ -121,20 +81,12 @@
 			</v-btn>
 			<v-btn 
 				x-large 
-				:color="color"
+				color="secondary"
 				icon
 				@click="open('https://www.tripadvisor.com/Restaurant_Review-g274873-d23450735-Reviews-La_Creperie_Cheri-Ljubljana_Upper_Carniola_Region.html')"
 			>
 				<i class="fa fa-tripadvisor fa-lg"></i>
 			</v-btn>
-			<!-- <v-btn
-				text
-				class="rounded-pill"
-			>
-				<v-icon>mdi-cart</v-icon>
-				<v-spacer></v-spacer>
-				1,00€
-			</v-btn> -->
 		</v-app-bar>
 		<v-main 
 			app
@@ -145,6 +97,60 @@
 				</router-view>
 			</v-layout>
 		</v-main>
+		<v-btn 
+			v-if="$route.path !== `/${$i18n.locale}/`"
+			fab
+			absolute 
+			right
+			bottom
+			class="mb-11"
+			color="primary"
+			:to="{ name: 'Landing' }"
+		>
+			<v-icon>mdi-home</v-icon>
+		</v-btn>
+		<v-speed-dial
+			v-else
+			v-model="fab"
+			absolute
+			right
+			bottom
+			transition="slide-y-reverse-transition"
+			direction="top"
+		>
+			<template v-slot:activator>
+				<v-btn
+					v-model="fab"
+					color="primary"
+					dark
+					fab
+				>
+					<v-icon v-if="fab">
+						mdi-close
+					</v-icon>
+					<v-icon v-else>
+						mdi-web
+					</v-icon>
+				</v-btn>
+			</template>
+			<v-btn
+				icon
+				@click="setLocale('si')"
+			>
+				<v-avatar>
+					<v-img :src="`${publicPath}flag_si.png`"></v-img>
+				</v-avatar>
+			</v-btn>
+			<v-btn
+				icon
+				class="mb-4"
+				@click="setLocale('en')"
+			>
+				<v-avatar>
+					<v-img :src="`${publicPath}flag_en.png`"></v-img>
+				</v-avatar>
+			</v-btn>
+		</v-speed-dial>
 	</v-app>
 </template>
 
@@ -157,13 +163,10 @@ export default {
 			path: '',
 			drawer: false,
 			publicPath: process.env.BASE_URL,
-			background: '',
-			color: ''
+			fab: false
 		}
 	},
 	created() {
-		this.background = this.$route.fullPath === '/' ? 'transparent' : 'primary';
-		this.color = this.$route.fullPath === '/' ? 'primary' : 'secondary';
 	},
 	methods: {
 		open(url) {
@@ -190,7 +193,7 @@ export default {
 		height: 20px;
 	}
 	.v-btn__border {
-		border: 2px solid #fda47e;
+		border: 2px solid #f2efdb;
 	}
 	.v-row__position {
 		position: absolute!important;
@@ -215,5 +218,10 @@ export default {
 	.slide-leave-from {
 		position: absolute;
 		left: 0;
+	}
+	.position {
+		position: absolute;
+		bottom: 0;
+		right: 0;
 	}
 </style>

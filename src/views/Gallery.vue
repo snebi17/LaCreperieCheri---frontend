@@ -4,17 +4,17 @@
       <v-row align="center" justify="center">
         <v-col cols="12" md="6">
           <v-row>
-            <p class="text-h5 text-md-h3 font-weight-bold secondary--text">
+            <p class="text-h5 text-md-h3 font-weight-bold success--text">
               <i class="fa fa-instagram mr-3"></i>Instagram
             </p>
           </v-row>
           <v-row>
-            <p class="text-body-2 text-md-body-1 secondary--text">
+            <p class="text-body-2 text-md-body-1 success--text">
               Sledite nam na @lacreperie_cheri
             </p>
           </v-row>
           <v-row>
-            <p class="text-body-2 text-md-body-1 secondary--text">
+            <p class="text-body-2 text-md-body-1 success--text">
               Označite nas s
               <span class="primary--text">#lacreperiecheri_palacinke</span>
             </p>

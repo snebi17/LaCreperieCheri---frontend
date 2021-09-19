@@ -42,8 +42,8 @@
                                 v-for="item in items"
                                 :key="item.id"
                             >
-                                    <h1>{{ item.type }}</h1>
                                 <template v-if="item.type.toLowerCase().includes('osnova') || item.type.toLowerCase().includes('base')">
+                                    
                                     <v-col
                                         v-for="product in item.products"
                                         :key="product.id"

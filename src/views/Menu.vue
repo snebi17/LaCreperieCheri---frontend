@@ -229,14 +229,14 @@ export default {
 		getItems() {
 			axios.get(`http://localhost:4000/api/items?lang=${this.$i18n.locale}`)
 				.then(res => {
-					this.data = res.data.items;
-					this.menu = this.data[0].items;
+					this.data = res.data.data;
+					this.menu = this.data[0];
 				})
-				.catch(errors => this.errors = errors);
+				.catch(errors => console.log(errors));
 		},
 		toggle(index) {
 			this.menu = [];
-			this.menu = this.data[index].items;
+			this.menu = this.data[index];
 		}
 	},
 	computed: {
