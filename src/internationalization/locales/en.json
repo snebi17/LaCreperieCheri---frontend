@@ -1,7 +1,5 @@
 {
-    "landing": "Landing",
-    "english": "English",
-    "slovene": "Slovene",
+    "pancake": "Pancake",
     "sweet": "Sweet",
     "salty": "Salty",
     "drinks": "Drinks",
@@ -11,49 +9,17 @@
         "gallery": "Gallery",
         "about": "About",
         "schedule_contact": "Schedule and contact",
-        "total": "Total: ",
         "order": "Order"
     },
     "order": {
-        "place": "Place order",
-        "here": "Here",
         "next": "Next",
-        "previous": "Previous",
         "send": "Order",
         "cart": "Shopping cart",
-        "custom": "Custom",
-        "premium": "Premium",
-        "steps": [
-            {
-                "title": "Taste",
-                "subtitle": "Choose which taste you would like your pancake to be:"
-            },
-            {
-                "title": "Base",
-                "subtitle": "Choose your base:",
-                "text": "Note: that's the most important part of your pancake, so choose wisely."
-            },
-            {
-                "title": "Spread",
-                "subtitle": "Choose your spread:",
-                "text": "Note: the second most important part of your pancake... the soul of it!"
-            },
-            {
-                "title": "Filling",
-                "subtitle": "Choose your filling:",
-                "text": ""
-            },
-            {
-                "title": "Topping",
-                "subtitle": "Choose your topping:",
-                "text": ""
-            },
-            {
-                "title": "Drink",
-                "subtitle": "Choose your drink:",
-                "text": ""
-            }
-        ]
+        "base": "Base",
+        "spreads": "Spreads",
+        "fillings": "Fillings",
+        "toppings": "Toppings",
+        "drinks": "Drinks"
     },
     "premium": [
         {

@@ -54,6 +54,16 @@
 				color="secondary"
 			></v-app-bar-nav-icon>
 			<v-spacer></v-spacer>
+			<v-btn 
+				v-if="products"
+				class="mr-3"
+				color="secondary"
+				icon
+				x-large
+				@click="sheet = true"
+			>
+				<v-icon>mdi-cart</v-icon>
+			</v-btn>
 			<v-btn
 				class="rounded-pill mr-1"
 				outlined
@@ -105,6 +115,7 @@
 			bottom
 			class="mb-11"
 			color="primary"
+			fixed
 			:to="{ name: 'Landing' }"
 		>
 			<v-icon>mdi-home</v-icon>
@@ -151,10 +162,22 @@
 				</v-avatar>
 			</v-btn>
 		</v-speed-dial>
+		<v-bottom-sheet 
+			v-model="sheet"
+			inset
+			color="primary"
+			class="v-bottom-sheet__background"
+		>
+            <p>Nakupovalni voziček</p>
+			{{ products }}
+            <v-treeview :items="products">
+			</v-treeview>
+		</v-bottom-sheet>
 	</v-app>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 
 export default {
 	name: 'App',
@@ -163,10 +186,17 @@ export default {
 			path: '',
 			drawer: false,
 			publicPath: process.env.BASE_URL,
-			fab: false
+			fab: false,
+			sheet: false
 		}
 	},
+	computed: {
+		...mapGetters('cart', {
+			products: 'cartProducts'
+		})
+	},
 	created() {
+		this.$store.state.products = [];
 	},
 	methods: {
 		open(url) {
@@ -188,40 +218,11 @@ export default {
 		padding: 0;
 		margin: 0;
 	}
-	.v-img__size {
-		width: 5px;
-		height: 20px;
-	}
-	.v-btn__border {
-		border: 2px solid #f2efdb;
+	.v-bottom-sheet__background {
+		color: #fda47e!important;
 	}
 	.v-row__position {
-		position: absolute!important;
-		bottom: 1rem;
-	}
-	.slide-enter-active,
-	.slide-leave-active {
-		transition: all 0.75s ease-out;
-	}
-	.slide-enter-to {
 		position: absolute;
-		right: 0;
-	}
-	.slide-enter-from {
-		position: absolute;
-		right: -100%;
-	}
-	.slide-leave-to {
-		position: absolute;
-		left: -100%;
-	}
-	.slide-leave-from {
-		position: absolute;
-		left: 0;
-	}
-	.position {
-		position: absolute;
-		bottom: 0;
-		right: 0;
+		bottom: 25px;
 	}
 </style>

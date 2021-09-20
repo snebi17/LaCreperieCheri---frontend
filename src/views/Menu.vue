@@ -225,7 +225,7 @@ export default {
 	},
 	methods: {
 		getItems() {
-			axios.get(`http://192.168.206.28:4000/api/items?lang=${this.$i18n.locale}`)
+			axios.get(`http://localhost:4000/api/items?lang=${this.$i18n.locale}`)
 				.then(res => {
 					this.data = res.data.data;
 					this.menu = this.data[0];
