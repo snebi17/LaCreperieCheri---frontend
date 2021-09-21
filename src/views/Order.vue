@@ -1,7 +1,7 @@
 <template>
 	<v-container fill-height fluid class="v-container__background">
-		<v-row align="center"  v-if="!taste">
-			<v-col cols="12" md="6" class="d-flex justify-center">
+		<v-row align="center" justify="center" v-if="!taste">
+			<v-col cols="12" md="4" class="d-flex justify-center">
 				<v-btn
 					color="primary"
 					text
@@ -14,7 +14,7 @@
 					{{ $t("sweet") }}
 				</v-btn>
 			</v-col>
-			<v-col cols="12" md="6" class="d-flex justify-center">
+			<v-col cols="12" md="4" class="d-flex justify-center">
 				<v-btn
 					color="primary"
 					text
@@ -34,32 +34,29 @@
 					<v-card-title>
                         {{ $t('order.base') }}
 					</v-card-title>
-					<v-card-text>
-						<v-list 
-                            color="transparent"
-                            v-for="item in steps.base"
-                            :key="item.id"
-                        >
-							<v-list-item
-                                v-for="(product, key) in item.products"
-                                :key="product.id"
-                            >
-                                <input type="radio"
-                                    v-model="prod.base"
-                                    :value="{ name: product.name, price: product.price }"
-                                    :id="key"
-                                    class="mr-2">
-                                <label :for="key" class="d-flex">
-                                    <p>{{ product.name }}</p>
-                                    <p class="ml-2">{{ product.price.toFixed(2) + ' €' }}</p>
-                                </label>
-							</v-list-item>
-						</v-list>
+					<v-card-text 
+						v-for="item in steps.base"
+                        :key="item.id"
+					>
+                        <v-chip-group
+							column
+							v-model="product.base"
+						>
+							<v-chip
+								v-for="product in item.products"
+								:key="product.id"
+								filter
+								outlined
+								:value="product"
+							>
+								{{ product.name }}
+							</v-chip>
+						</v-chip-group>
 					</v-card-text>
 				</v-card>
 			</v-col>
 			<v-col cols="12" md="4">
-				<v-card rounded="xl" flat color="transparent" :disabled="Object.keys(prod.base).length == 0">
+				<v-card rounded="xl" flat color="transparent">
                     <v-card-title>
                         {{ $t('order.spreads') }}
                     </v-card-title>
@@ -68,22 +65,27 @@
 							<v-expansion-panel
                                 v-for="item in steps.spreads" 
                                 :key="item.id"
+								class="v-expansion-panel__transparent"
                             >
                                 <v-expansion-panel-header>
                                     {{ item.type }}
                                 </v-expansion-panel-header>
-								<v-expansion-panel-content
-                                    v-for="(product, key) in item.products" 
-                                    :key="product.id"
-                                >
-                                    <input type="checkbox"
-                                        v-model="prod.spreads"
-                                        :value="{ name: product.name, price: product.price }"
-                                        :id="key">
-                                    <label :for="key" class="d-flex">
-                                        <p>{{ product.name }}</p>
-                                        <p class="ml-2">{{ product.price.toFixed(2) + ' €' }}</p>
-                                    </label>
+								<v-expansion-panel-content>
+                                    <v-chip-group
+										column
+										multiple
+										v-model="product.spreads"
+									>
+										<v-chip
+											v-for="product in item.products" 
+											:key="product.id"
+											filter
+											outlined
+											:value="product"
+										>
+											{{ product.name }}
+										</v-chip>
+									</v-chip-group>
                                 </v-expansion-panel-content>
 							</v-expansion-panel>
 						</v-expansion-panels>
@@ -91,7 +93,7 @@
 				</v-card>
 			</v-col>
 			<v-col cols="12" md="4">
-				<v-card rounded="xl" flat color="transparent" :disabled="prod.spreads.length == 0">
+				<v-card rounded="xl" flat color="transparent">
 					<v-card-title>
                         {{ $t('order.fillings') }}
                     </v-card-title>
@@ -104,18 +106,22 @@
                                 <v-expansion-panel-header>
                                     {{ item.type }}
                                 </v-expansion-panel-header>
-								<v-expansion-panel-content
-                                    v-for="(product, key) in item.products" 
-                                    :key="product.id"
-                                >
-                                    <input type="checkbox"
-                                        v-model="prod.fillings"
-                                        :value="{ name: product.name, price: product.price }"
-                                        :id="key">
-                                    <label :for="key" class="d-flex">
-                                        <p>{{ product.name }}</p>
-                                        <p class="ml-2">{{ product.price.toFixed(2) + ' €' }}</p>
-                                    </label>
+								<v-expansion-panel-content>
+                                    <v-chip-group
+										column
+										multiple
+										v-model="product.fillings"
+									>
+										<v-chip
+											v-for="product in item.products" 
+											:key="product.id"
+											filter
+											outlined
+											:value="product"
+										>
+											{{ product.name }}
+										</v-chip>
+									</v-chip-group>
                                 </v-expansion-panel-content>
 							</v-expansion-panel>
 						</v-expansion-panels>
@@ -125,7 +131,7 @@
 		</v-row>
 		<v-row align="start" v-if="taste">
 			<v-col cols="12" md="4">
-                    <v-card rounded="xl" flat color="transparent" :disabled="prod.fillings.length == 0">
+                    <v-card rounded="xl" flat color="transparent">
 					<v-card-title>
                         {{ $t('order.toppings') }}
                     </v-card-title>
@@ -138,18 +144,22 @@
                                 <v-expansion-panel-header>
                                     {{ item.type }}
                                 </v-expansion-panel-header>
-								<v-expansion-panel-content
-                                    v-for="(product, key) in item.products" 
-                                    :key="product.id"
-                                >
-                                    <input type="checkbox"
-                                        v-model="prod.toppings"
-                                        :value="{ name: product.name, price: product.price }"
-                                        :id="key">
-                                    <label :for="key" class="d-flex">
-                                        <p>{{ product.name }}</p>
-                                        <p class="ml-2">{{ product.price.toFixed(2) + ' €' }}</p>
-                                    </label>
+								<v-expansion-panel-content>
+                                    <v-chip-group
+										column
+										multiple
+										v-model="product.toppings"
+									>
+										<v-chip
+											v-for="product in item.products" 
+											:key="product.id"
+											filter
+											outlined
+											:value="product"
+										>
+											{{ product.name }}
+										</v-chip>
+									</v-chip-group>
                                 </v-expansion-panel-content>
 							</v-expansion-panel>
 						</v-expansion-panels>
@@ -157,7 +167,7 @@
 				</v-card>
 			</v-col>
 			<v-col cols="12" md="5">
-				<v-card rounded="xl" flat color="transparent" :disabled="prod.toppings.length == 0">
+				<v-card rounded="xl" flat color="transparent">
 					<v-card-title>
                         {{ $t('order.drinks') }}
                     </v-card-title>
@@ -170,18 +180,22 @@
                                 <v-expansion-panel-header>
                                     {{ item.type }}
                                 </v-expansion-panel-header>
-								<v-expansion-panel-content
-                                    v-for="(product, key) in item.products" 
-                                    :key="product.id"
-                                >
-                                   <input type="checkbox"
-                                        v-model="prod.drinks"
-                                        :value="{ name: product.name, price: product.price }"
-                                        :id="key">
-                                    <label :for="key" class="d-flex label__overflow">
-                                        <p>{{ product.name }}</p>
-                                        <p class="ml-2">{{ product.price.toFixed(2) + ' €' }}</p>
-                                    </label>
+								<v-expansion-panel-content>
+									<v-chip-group
+										column
+										multiple
+										v-model="product.drinks"
+									>
+										<v-chip
+											v-for="product in item.products" 
+											:key="product.id"
+											filter
+											outlined
+											:value="product"
+										>
+											{{ product.name }}
+										</v-chip>
+									</v-chip-group>
                                 </v-expansion-panel-content>
 							</v-expansion-panel>
 						</v-expansion-panels>
@@ -218,13 +232,13 @@ export default {
 				toppings: [],
 				drinks: [],
 			},
-			prod: {
-                base: {},
-                spreads: [],
-                fillings: [],
-                toppings: [],
-                drinks: [],
-            },
+			product: {
+				base: [],
+				spreads: [],
+				fillings: [],
+				toppings: [],
+				drinks: []
+			},
             taste: false,
 		};
 	},
@@ -243,19 +257,20 @@ export default {
 	methods: {
 		getItems() {
 			axios
-				.get(`http://localhost:4000/api/items?lang=${this.$i18n.locale}`)
+				.get(`items?lang=${this.$i18n.locale}`)
 				.then((res) => {
 					this.data = res.data.data;
 				})
 				.catch((errors) => (this.errors = errors));
 		},
 		addProductToCart() {
-			this.$store.dispatch("cart/addProductToCart", this.prod);
+			console.log(this.product);
+			// this.$store.dispatch("cart/addProductToCart", this.product);
 		},
 		placeOrder() {
 			let data = this.products;
 			axios
-				.post("http://localhost:4000/api/orders", {
+				.post("orders", {
 					data,
 				})
 				.then(() => console.log("Order has been made"))
@@ -287,10 +302,7 @@ export default {
 				this.steps.drinks.push(drinks[5]);
 			}
             this.taste = true;
-		},
-        read() {
-            console.log(this.prod);
-        }
+		}
 	},
 };
 </script>
@@ -310,6 +322,9 @@ export default {
     .v-row__height {
         height: 100%!important;
     }
+	.v-expansion-panel__transparent {
+		background-color: #f2efdb!important;
+	}
     label {
         float: right;
     }

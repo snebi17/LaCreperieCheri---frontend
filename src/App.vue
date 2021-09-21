@@ -169,7 +169,6 @@
 			class="v-bottom-sheet__background"
 		>
             <p>Nakupovalni voziček</p>
-			{{ products }}
             <v-treeview :items="products">
 			</v-treeview>
 		</v-bottom-sheet>

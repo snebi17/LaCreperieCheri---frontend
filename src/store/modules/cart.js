@@ -5,27 +5,13 @@ const state = () => ({
 
 const getters = {
 	cartProducts: (state) => {
-		// let cart = [];
-		// let id = 1;
-		// state.products.forEach((product) => {
-		// 	let items = [];
-		// 	Object.values(product).forEach((item) => {
-		// 		item.items.forEach((i) => {
-		// 			items.push({
-		// 				name: i.name,
-		// 				price: i.price,
-		// 			});
-		// 		});
-		// 	});
-		// 	cart.push({
-		// 		id: id,
-		// 		name: "Palačinka #" + id,
-		// 		children: items,
-		// 	});
-		// 	id++;
-		// });
+		let prods = [];
 
-		// return cart;
+		state.products.forEach((item) => {
+			console.log(item);
+			prods.push(item);
+		});
+
 		return state.products;
 	},
 
@@ -40,7 +26,6 @@ const getters = {
 const actions = {
 	addProductToCart({ commit }, product) {
 		commit("pushProductToCart", { product: product });
-		console.log(product);
 	},
 };
 
