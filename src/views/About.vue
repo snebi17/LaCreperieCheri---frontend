@@ -15,8 +15,4 @@ export default {
 </script>
 
 <style>
-	.v-container__background {
-        background-image: url('../assets/background1.png')!important;
-        background-repeat: repeat;
-    }
 </style>

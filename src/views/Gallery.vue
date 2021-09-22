@@ -56,8 +56,4 @@ export default {
 		padding: 0;
 		margin: 0;
 	}
-	.v-container__background {
-        background-image: url('../assets/background1.png')!important;
-        background-repeat: repeat;
-    }
 </style>

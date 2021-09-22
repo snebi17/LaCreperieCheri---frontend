@@ -101,8 +101,4 @@ export default {
 	.inline {
 		display: flex;
 	}
-	.v-container__background {
-        background-image: url('../assets/background1.png')!important;
-        background-repeat: repeat;
-    }
 </style>

@@ -5,7 +5,7 @@ import VueRouter from "vue-router";
 import router from "./routes/router";
 import vuetify from "./plugins/vuetify";
 import i18n from "./internationalization/i18n";
-import store from "./store";
+import store from "./store/index";
 import axios from "axios";
 
 import "../public/app.css";

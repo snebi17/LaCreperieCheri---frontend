@@ -9,7 +9,8 @@
         "gallery": "Galerija",
         "about": "O nas",
         "schedule_contact": "Delovnik in kontakt",
-        "order": "Naroči"
+        "order": "Naroči",
+        "cart": "Košarica"
     },
     "order": {
         "next": "Naprej",

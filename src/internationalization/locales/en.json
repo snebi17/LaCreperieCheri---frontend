@@ -9,7 +9,8 @@
         "gallery": "Gallery",
         "about": "About",
         "schedule_contact": "Schedule and contact",
-        "order": "Order"
+        "order": "Order",
+        "cart": "Cart"
     },
     "order": {
         "next": "Next",

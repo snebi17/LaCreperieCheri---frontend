@@ -1,45 +1,8 @@
-html, body {
-    padding: 0;
-    margin: 0;
-    font-family: 'Montserrat', sans-serif!important;
-    color: var(--accent);
+.gradient {
+	background: rgb(253,164,126);
+	background: linear-gradient(25deg, rgba(253,164,126,1) 40%, rgba(242,239,219,1) 100%);
 }
-.btn:active {
-    color: purple;
-}
-.btn:focus {
-    outline: none;
-    box-shadow: none;
-}
-.btn:hover {
-    box-shadow: 5px 5px 10px #888888;
-    border: 1px solid black;
-}
-/* width */
-/* ::-webkit-scrollbar {
-    width: 6px;
-  } */
-  
-  /* Track */
-  /* ::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background: var(--secondary);
-    } */
-  
-  /* Handle */
-  /* ::-webkit-scrollbar-thumb {
-    background: black;
-  } */
-
-/* .header {
-  background-color: #fda47e;
-}
-.body {
-  background-color: #f2efdb;
-}
-.text {
-  color: #3d3737;
-}
-.footer {
-  background-color: #c78283;
-} */
+.v-container__background {
+        background-image: url("../src/assets/background1.png") !important;
+        background-repeat: repeat;
+    }

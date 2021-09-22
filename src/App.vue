@@ -54,24 +54,25 @@
 				color="secondary"
 			></v-app-bar-nav-icon>
 			<v-spacer></v-spacer>
-			<v-btn 
-				v-if="products"
-				class="mr-3"
-				color="secondary"
-				icon
-				x-large
-				@click="sheet = true"
-			>
-				<v-icon>mdi-cart</v-icon>
-			</v-btn>
 			<v-btn
+				v-if="!products.length"
 				class="rounded-pill mr-1"
 				outlined
 				color="secondary"
 				text
-				:to="{ name: 'Order', params: { lang:  $i18n.locale  } }"
+				:to="{ name: 'Order', params: { lang: $i18n.locale  } }"
 			>
 				{{ $t('nav.order') }}
+			</v-btn>
+			<v-btn
+				v-else
+				class="rounded-pill mr-1"
+				outlined
+				color="secondary"
+				text
+				:to="{ name: 'Cart', params: { lang: $i18n.locale } }"
+			>
+				{{ $t('nav.cart') }} | {{ total.toFixed(2) + ' €' }}
 			</v-btn>
 			<v-btn 
 				x-large
@@ -162,16 +163,6 @@
 				</v-avatar>
 			</v-btn>
 		</v-speed-dial>
-		<v-bottom-sheet 
-			v-model="sheet"
-			inset
-			color="primary"
-			class="v-bottom-sheet__background"
-		>
-            <p>Nakupovalni voziček</p>
-            <v-treeview :items="products">
-			</v-treeview>
-		</v-bottom-sheet>
 	</v-app>
 </template>
 
@@ -191,7 +182,8 @@ export default {
 	},
 	computed: {
 		...mapGetters('cart', {
-			products: 'cartProducts'
+			products: 'cartProducts',
+			total: 'cartTotalPrice'
 		})
 	},
 	created() {
@@ -216,9 +208,6 @@ export default {
 	p {
 		padding: 0;
 		margin: 0;
-	}
-	.v-bottom-sheet__background {
-		color: #fda47e!important;
 	}
 	.v-row__position {
 		position: absolute;
